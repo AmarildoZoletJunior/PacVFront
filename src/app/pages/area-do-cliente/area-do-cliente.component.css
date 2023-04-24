@@ -1,0 +1,62 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  transform: translate(5%, 15%);
+
+}
+
+.imagem img {
+  max-width: 100%;
+  height: 400px;
+}
+
+.campos {
+  flex: 1;
+  margin-left: 20px;
+  
+}
+
+.campos h2{
+  padding: 2%; 
+  padding-left: 10%;
+  padding-bottom: 5%;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.campo label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+
+.campo button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  transition: all 0.3s ease;
+}
+
+.campo button:hover {
+  background-color: #0062cc;
+}
