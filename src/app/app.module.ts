@@ -9,6 +9,8 @@ import { SigninPageComponent } from './pages/signin-page/signin-page.component';
 import { RecuperarSenhaComponent } from './pages/recuperar-senha/recuperar-senha.component';
 import { ContatoComponent } from './pages/contato/contato.component';
 import { AreaDoClienteComponent } from './pages/area-do-cliente/area-do-cliente.component';
+import { ComponentsModule } from './components/components.module';
+
 
 
 const routes : Routes = [
@@ -27,8 +29,8 @@ const routes : Routes = [
     BrowserModule,
     AppRoutingModule,
     PagesModule,
-    RouterModule.forRoot(routes)
-
+    RouterModule.forRoot(routes),
+    ComponentsModule
   ],
   exports:[RouterModule],
   providers: [],
