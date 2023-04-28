@@ -13,14 +13,6 @@ import { ComponentsModule } from './components/components.module';
 
 
 
-const routes : Routes = [
-  {path: '', component:LoginPageComponent},
-  {path: 'signin', component:SigninPageComponent},
-  {path: 'recuperar-senha', component:RecuperarSenhaComponent},
-  {path: 'contato', component:ContatoComponent},
-  {path: 'area-cliente', component:AreaDoClienteComponent},
-]
-
 @NgModule({
   declarations: [
     AppComponent
@@ -29,10 +21,8 @@ const routes : Routes = [
     BrowserModule,
     AppRoutingModule,
     PagesModule,
-    RouterModule.forRoot(routes),
     ComponentsModule
   ],
-  exports:[RouterModule],
   providers: [],
   bootstrap: [AppComponent]
 })
