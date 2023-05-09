@@ -1,20 +1,24 @@
-
-<div class="container">
-    <div class="card">
-        <div class="card2">
-            <h2 class="bv-text">
-               <p>Esqueceu sua senha ?</p> 
-            </h2>
-            <form>
-            <div>
-                <label for="password">senha:</label>
-            
-            </div>
-            <div>
-                <label for="password">repetir senha:</label>
-            
-            </div>
-            </form>
+<div class="container-fluid col-4 mt-5">
+    <h2 class="text-center">Recuperação de senha</h2>
+    <p class="">Digite uma senha forte, com pelo menos 1 letra maiúscula, 1 letra minúscula e 1 número.</p>
+  <form>
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example1">Nova senha</label>
+        <input type="email" id="form2Example1" class="form-control" />
+  
+      </div>
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">Confirmar senha</label>
+        <input type="password" id="form2Example2" class="form-control" />
+      </div>
+      <!-- <div class="row mb-4">
+        <div class="col">
+          <a href="#!">Forgot password?</a>
         </div>
-    </div>
-</div>
+      </div> -->
+      <div class="d-flex flex-row justify-content-between align-items-baseline">
+        <button type="button" class="btn btn-primary h-25 btn-block" routerLink="/home">Recuperar Senha</button>
+      </div>
+  
+    </form>
+  </div>

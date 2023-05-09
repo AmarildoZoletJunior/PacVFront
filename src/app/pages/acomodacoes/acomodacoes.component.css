@@ -1,0 +1,22 @@
+
+@keyframes teste {
+    0%{
+        background-color: white;
+    }
+    25%{
+        background-color: #d4d4d4;
+    }
+    100%{
+        background-color: #bab9b9;
+    }
+
+}
+
+.card:hover{
+animation: teste 2.0s;
+
+}
+a{
+    text-decoration: none;
+    color: black;
+}
