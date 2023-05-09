@@ -5,6 +5,7 @@ import { SigninPageComponent } from './pages/signin-page/signin-page.component';
 import { RecuperarSenhaComponent } from './pages/recuperar-senha/recuperar-senha.component';
 import { ContatoComponent } from './pages/contato/contato.component';
 import { AreaDoClienteComponent } from './pages/area-do-cliente/area-do-cliente.component';
+import { AcomodacoesComponent } from './pages/acomodacoes/acomodacoes.component';
 
 const routes: Routes = [
   {path: 'home', component:LoginPageComponent},
@@ -12,6 +13,8 @@ const routes: Routes = [
   {path: 'recuperacao', component:RecuperarSenhaComponent},
   {path: 'contato', component:ContatoComponent},
   {path: 'areacliente', component:AreaDoClienteComponent},
+  {path:'login',component:LoginPageComponent},
+  {path:'acomodacoes',component:AcomodacoesComponent}
 ];
 
 @NgModule({

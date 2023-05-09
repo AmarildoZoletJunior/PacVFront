@@ -1,35 +1,24 @@
-
-<div class="container">
-    <div class="card">
-        <div class="card2">
-            <h2 class="bv-text">
-               <p>Cadastro</p> 
-            </h2>
-            <form>
-            <div>
-                <label for="username">Nome:</label>
-            
-            </div>
-            <div>
-                <label for="password">Sobrenome:</label>
-            
-            </div>
-            <div>
-                <label for="password">Email:</label>
-            
-            </div>
-            <div>
-                <label for="password">Senha:</label>
-            
-            </div>
-            <div>
-                <label for="password">CPF:</label>
-            
-            </div>
-            <div class="group-button">
-                <button type="submit">Cadastrar</button>
-            </div>
-            </form>
-        </div>
+<div class="container-fluid col-12 col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 col-sm-12 mt-5">
+    <h2 class="text-center">Se registre-se na plataforma</h2>
+  <form [formGroup]="formulario" (ngSubmit)="enviarDados()">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control mr-1" placeholder="Nome" id="nome" name="nome" formControlName="nome" aria-label="nome">
+      <input type="text" class="form-control ml-1" placeholder="Sobrenome" id="sobrenome" name="sobrenome" formControlName="sobrenome">
     </div>
-</div>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control mr-1" placeholder="Telefone" id="telefone" name="telefone" formControlName="telefone" aria-label="telefone">
+      <input type="text" class="form-control ml-1" placeholder="CPF" id="cpf" name="cpf" formControlName="cpf" aria-label="cpf">
+    </div>
+      <div class="form-outline mb-4">
+        <input type="text" class="form-control mr-1" placeholder="Email" id="email" name="email" formControlName="email" aria-label="email">
+      </div>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control mr-1" placeholder="Senha" id="senha" name="senha" formControlName="senha" aria-label="senha">
+        <input type="text" class="form-control ml-1" placeholder="Confirmar Senha" id="confirmarsenha" formControlName="confirmarsenha" name="confirmarsenha" aria-label="confirmarsenha">
+      </div>
+      <div class="d-flex flex-row justify-content-between align-items-baseline">
+        <button type="button" class="btn btn-primary mx-2 h-25 btn-block" routerLink="/home">Já tenho conta</button>
+        <button type="button" class="btn btn-success h-25 btn-block">Cadastrar</button>  
+      </div>
+    </form>
+  </div>

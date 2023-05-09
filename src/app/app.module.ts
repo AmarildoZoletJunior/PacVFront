@@ -11,6 +11,7 @@ import { ContatoComponent } from './pages/contato/contato.component';
 import { AreaDoClienteComponent } from './pages/area-do-cliente/area-do-cliente.component';
 import { ComponentsModule } from './components/components.module';
 import {HttpClientModule} from '@angular/common/http'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -23,7 +24,9 @@ import {HttpClientModule} from '@angular/common/http'
     AppRoutingModule,
     PagesModule,
     ComponentsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

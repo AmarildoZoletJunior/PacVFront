@@ -6,6 +6,9 @@ import { SigninPageComponent } from './signin-page/signin-page.component';
 import { ContatoComponent } from './contato/contato.component';
 import { RecuperarSenhaComponent } from './recuperar-senha/recuperar-senha.component';
 import { AreaDoClienteComponent } from './area-do-cliente/area-do-cliente.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from '../app-routing.module';
+import { AcomodacoesComponent } from './acomodacoes/acomodacoes.component';
 
 
 
@@ -16,11 +19,15 @@ import { AreaDoClienteComponent } from './area-do-cliente/area-do-cliente.compon
     ContatoComponent,
     RecuperarSenhaComponent,
     LoginPageComponent,
-    AreaDoClienteComponent
+    AreaDoClienteComponent,
+    AcomodacoesComponent
   ],
   imports: [
     CommonModule,
-    ComponentsModule
+    ComponentsModule,
+    ReactiveFormsModule,
+    FormsModule,
+    AppRoutingModule
   ],
   exports:[
     LoginPageComponent,
