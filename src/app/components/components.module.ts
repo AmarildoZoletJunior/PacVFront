@@ -4,11 +4,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { MessageErrorComponent } from './message-error/message-error.component';
+import { Base64ToImagePipe } from './pipes/Base64ToImagePipe';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    MessageErrorComponent,
+    Base64ToImagePipe
   ],
   imports: [
     CommonModule,
@@ -18,7 +22,9 @@ import { AppRoutingModule } from '../app-routing.module';
   ],
   exports:[
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    MessageErrorComponent,
+    Base64ToImagePipe
   ]
 })
 export class ComponentsModule { }

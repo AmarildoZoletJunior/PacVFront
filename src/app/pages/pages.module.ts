@@ -9,6 +9,10 @@ import { AreaDoClienteComponent } from './area-do-cliente/area-do-cliente.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { AcomodacoesComponent } from './acomodacoes/acomodacoes.component';
+import { QuartoComponent } from './quarto/quarto.component';
+import { MenuAdministradorListaComponent } from './menu-administrador-lista/menu-administrador-lista.component';
+import { EditarQuartoComponent } from './editar-quarto/editar-quarto.component';
+import { CriarQuartoComponent } from './criar-quarto/criar-quarto.component';
 
 
 
@@ -20,7 +24,11 @@ import { AcomodacoesComponent } from './acomodacoes/acomodacoes.component';
     RecuperarSenhaComponent,
     LoginPageComponent,
     AreaDoClienteComponent,
-    AcomodacoesComponent
+    AcomodacoesComponent,
+    QuartoComponent,
+    MenuAdministradorListaComponent,
+    EditarQuartoComponent,
+    CriarQuartoComponent
   ],
   imports: [
     CommonModule,

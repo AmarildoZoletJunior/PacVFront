@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./contato.component.css']
 })
 export class ContatoComponent {
+  showModal = true;
 
+  openModal() {
+    this.showModal = true;
+  }
 }

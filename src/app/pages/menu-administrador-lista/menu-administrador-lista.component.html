@@ -1,0 +1,29 @@
+<div class="col-12">
+    <div class="col-12 col-xxl-8 col-xl-8 col-lg-12 col-md-12 col-sm-12 p-0 m-0 mx-auto">
+        <button class="btn btn-success">Criar Quarto</button>
+    </div>
+    <div *ngFor="let room of ListRooms"
+        class="col-11 col-xxl-8 col-xl-8 col-lg-12 col-md-12 col-sm-12 my-1 p-1 mx-auto rounded-1 bg-primary d-flex align-items-center flex-row">
+        <div class="col-12 d-flex flex-row justify-content-around align-items-baseline" *ngIf="room != undefined;else loop">
+            <div class="col-8">
+                <p>{{room.name}}</p>
+            </div>
+            <div class="col-4 justify-content-end d-flex flex-row">
+                <div>
+                    <button class="btn btn-danger" (click)="DeletarUsuario(room.id,room.name)">Excluir</button>
+                </div>
+                <div>
+                    <a routerLink="/editar/quarto/{{room.id}}"><button
+                            class="btn btn-success ml-2">Editar</button></a>
+                </div>
+            </div>
+        </div>
+        <ng-template #loop>
+            <div class="col-12 m-auto d-flex align-items-center justify-content-center h-100 w-100">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+          </ng-template>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+.message{
+    animation: mess .4s ease;
+    box-shadow: 3px  5px .5em grey;
+        position: fixed;
+        top: 3em;
+        width: 50%;
+        margin-left: 50%;
+        left: -25%;
+        z-index: 10;
+        background-color: whitesmoke;
+        border-radius: 10px;
+        padding: 1.5em;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    
+    @keyframes mess{
+        0%{
+            opacity: 0%;
+        }
+        25%{
+            opacity: 25%;
+        }
+        50%{
+            opacity: 50%;
+        }
+        100%{
+            opacity: 100%;
+        }
+    }
+    .message-header{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1em;
+    }
+    .message-header button{
+        padding: 0.5em;
+        cursor: pointer;
+        border: none;
+    }
+    .message p{
+        font-size: 1.2em;
+    }
+    .clear img{
+        width: 45px;
+    }

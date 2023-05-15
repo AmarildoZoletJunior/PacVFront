@@ -1,115 +1,15 @@
-<div class="col-12 d-flex flex-row flex-lxx-row flex-wrap justify-content-center">
-<div class="col-5">
-<a href="" class="">
+<div class="col-12 d-flex flex-wrap flex-row flex-xxl-row flex-xl-row flex-lg-row flex-md-column flex-sm-column flex-wrap justify-content-center">
+<div class="col-12 col-xxl-4 col-xl-4 col-lg-4 col-md-8 col-sm-8 col-sm-8" *ngFor="let room of ListRooms">
+<a routerLink="/quarto/{{room.id}}" class="">
 <div class="card mt-5 mb-3 col-12 mx-auto">
-    <img src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" class="card-img-top mt-2" alt="Wild Landscape"/>
+  <img class="imageCard mx-auto mt-2 img-fluid w-100" [src]="room.images[0].imageBase | base64ToImage" />
     <div class="card-body">
-      <h5 class="card-title">Acomodação com suíte blablabla</h5>
+      <h5 class="card-title">{{room.name}}</h5>
       <p class="card-text">
-        This is a wider card with supporting text below as a natural lead-in to additional
-        content. This content is a little bit longer.
+        {{room.description}}
       </p>
     </div>
   </div>
   </a>
 </div>
-<div class="col-5">
-    <a href="" class="">
-    <div class="card mt-5 mb-3 col-12 mx-auto">
-        <img src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" class="card-img-top mt-2" alt="Wild Landscape"/>
-        <div class="card-body">
-          <h5 class="card-title">Acomodação com suíte blablabla</h5>
-          <p class="card-text">
-            This is a wider card with supporting text below as a natural lead-in to additional
-            content. This content is a little bit longer.
-          </p>
-        </div>
-      </div>
-      </a>
-    </div>
-    <div class="col-5">
-        <a href="" class="">
-        <div class="card mt-5 mb-3 col-12 mx-auto">
-            <img src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" class="card-img-top mt-2" alt="Wild Landscape"/>
-            <div class="card-body">
-              <h5 class="card-title">Acomodação com suíte blablabla</h5>
-              <p class="card-text">
-                This is a wider card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.
-              </p>
-            </div>
-          </div>
-          </a>
-        </div>
-        <div class="col-5">
-            <a href="" class="">
-            <div class="card mt-5 mb-3 col-12 mx-auto">
-                <img src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" class="card-img-top mt-2" alt="Wild Landscape"/>
-                <div class="card-body">
-                  <h5 class="card-title">Acomodação com suíte blablabla</h5>
-                  <p class="card-text">
-                    This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.
-                  </p>
-                </div>
-              </div>
-              </a>
-            </div>
-            <div class="col-5">
-                <a href="" class="">
-                <div class="card mt-5 mb-3 col-12 mx-auto">
-                    <img src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" class="card-img-top mt-2" alt="Wild Landscape"/>
-                    <div class="card-body">
-                      <h5 class="card-title">Acomodação com suíte blablabla</h5>
-                      <p class="card-text">
-                        This is a wider card with supporting text below as a natural lead-in to additional
-                        content. This content is a little bit longer.
-                      </p>
-                    </div>
-                  </div>
-                  </a>
-                </div>
-                <div class="col-5">
-                    <a href="" class="">
-                    <div class="card mt-5 mb-3 col-12 mx-auto">
-                        <img src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" class="card-img-top mt-2" alt="Wild Landscape"/>
-                        <div class="card-body">
-                          <h5 class="card-title">Acomodação com suíte blablabla</h5>
-                          <p class="card-text">
-                            This is a wider card with supporting text below as a natural lead-in to additional
-                            content. This content is a little bit longer.
-                          </p>
-                        </div>
-                      </div>
-                      </a>
-                    </div>
-
-                    <div class="col-5">
-<a href="" class="">
-<div class="card mt-5 mb-3 col-12 mx-auto">
-    <img src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" class="card-img-top mt-2" alt="Wild Landscape"/>
-    <div class="card-body">
-      <h5 class="card-title">Acomodação com suíte blablabla</h5>
-      <p class="card-text">
-        This is a wider card with supporting text below as a natural lead-in to additional
-        content. This content is a little bit longer.
-      </p>
-    </div>
-  </div>
-  </a>
-</div>
-<div class="col-5">
-    <a href="" class="">
-    <div class="card mt-5 mb-3 col-12 mx-auto">
-        <img src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" class="card-img-top mt-2" alt="Wild Landscape"/>
-        <div class="card-body">
-          <h5 class="card-title">Acomodação com suíte blablabla</h5>
-          <p class="card-text">
-            This is a wider card with supporting text below as a natural lead-in to additional
-            content. This content is a little bit longer.
-          </p>
-        </div>
-      </div>
-      </a>
-    </div>
 </div>
