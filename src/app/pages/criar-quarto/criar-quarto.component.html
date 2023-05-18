@@ -1,1 +1,39 @@
-<p>criar-quarto works!</p>
+<div class="col-8 mx-auto my-5">
+    <form >
+      <div class="d-flex flex-column flex-xxl-row flex-xl-row flex-lg-row flex-md-column flex-sm-column justify-content-between">
+      <div class="col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 p-0 my-0">
+        <div class="form-group">
+          <label for="image">Imagem principal:</label>
+          <div class="custom-file">
+            <input type="file" id="image" (change)="ArquivoImagemPrincipalNome($event)" class="custom-file-input">
+            <label class="custom-file-label" for="image">{{ ImagemPrincipal }}</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 p-0 my-0 ml-1">
+        <div class="form-group">
+          <label for="image">Demais imagens</label>
+          <div class="custom-file">
+            <input type="file" id="image" (change)="ArquivoImagensSecundarias($event)" class="custom-file-input" multiple>
+            <label class="custom-file-label" for="image">{{ DemaisImagens }}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control mr-1" placeholder="Andar" id="Andar" name="Andar" formControlName="Andar" aria-label="Andar">
+          <input type="text" class="form-control ml-1" placeholder="Nome" id="Nome" name="Nome" formControlName="Nome">
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control mr-1" placeholder="Descrição" id="Descrição" name="Descrição" formControlName="Descrição" aria-label="Descrição">
+          <input type="text" class="form-control ml-1" placeholder="Numero do quarto" id="Numero do quarto" name="Numero do quarto" formControlName="Numero do quarto" aria-label="Numero do quarto">
+        </div>
+          <div class="form-outline mb-4">
+            <textarea type="text" class="form-control mr-1" placeholder="Descrição do quarto" id="Descricao" name="Descricao" formControlName="Descricao" aria-label="Descricao"></textarea>
+          </div>
+          <div class="d-flex col-6 mx-auto flex-row justify-content-between align-items-baseline">
+            <button type="button" class="btn btn-success h-25 m-0 btn-block"> <a routerLink="/signin" style="color:black;text-decoration:none"> Registrar</a></button>
+          </div>
+        </form>
+</div>
+

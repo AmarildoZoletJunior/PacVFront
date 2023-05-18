@@ -1,9 +1,9 @@
-<div class="col-12">
+<div class="col-12 my-5">
     <div class="col-12 col-xxl-8 col-xl-8 col-lg-12 col-md-12 col-sm-12 p-0 m-0 mx-auto">
-        <button class="btn btn-success">Criar Quarto</button>
+        <a href="" routerLink="/criar"><button class="btn btn-success">Criar Quarto</button></a>
     </div>
     <div *ngFor="let room of ListRooms"
-        class="col-11 col-xxl-8 col-xl-8 col-lg-12 col-md-12 col-sm-12 my-1 p-1 mx-auto rounded-1 bg-primary d-flex align-items-center flex-row">
+        class="col-11 col-xxl-8 col-xl-8 col-lg-12 col-md-12 col-sm-12 my-1 p-1 mx-auto rounded-1 cards d-flex align-items-center flex-row">
         <div class="col-12 d-flex flex-row justify-content-around align-items-baseline" *ngIf="room != undefined;else loop">
             <div class="col-8">
                 <p>{{room.name}}</p>

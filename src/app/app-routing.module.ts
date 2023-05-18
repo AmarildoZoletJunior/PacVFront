@@ -10,6 +10,9 @@ import { MessageErrorComponent } from './components/message-error/message-error.
 import { QuartoComponent } from './pages/quarto/quarto.component';
 import { MenuAdministradorListaComponent } from './pages/menu-administrador-lista/menu-administrador-lista.component';
 import { EditarQuartoComponent } from './pages/editar-quarto/editar-quarto.component';
+import { CriarQuartoComponent } from './pages/criar-quarto/criar-quarto.component';
+import { InformacaoUsuarioComponent } from './pages/informacao-usuario/informacao-usuario.component';
+import { ListaReservasComponent } from './pages/lista-reservas/lista-reservas.component';
 
 const routes: Routes = [
   {path: 'home', component:LoginPageComponent},
@@ -21,7 +24,10 @@ const routes: Routes = [
   {path:'acomodacoes',component:AcomodacoesComponent},
   {path: 'quarto/:id', component:QuartoComponent},
   {path:'administrador',component:MenuAdministradorListaComponent},
-  {path:'editar/quarto/:id',component:EditarQuartoComponent}
+  {path:'editar/quarto/:id',component:EditarQuartoComponent},
+  {path:'criar',component:CriarQuartoComponent},
+  {path:'editar/usuario',component:InformacaoUsuarioComponent},
+  {path:'reservas',component:ListaReservasComponent}
 ];
 
 @NgModule({
