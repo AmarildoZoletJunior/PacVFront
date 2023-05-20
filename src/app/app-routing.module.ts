@@ -13,6 +13,7 @@ import { EditarQuartoComponent } from './pages/editar-quarto/editar-quarto.compo
 import { CriarQuartoComponent } from './pages/criar-quarto/criar-quarto.component';
 import { InformacaoUsuarioComponent } from './pages/informacao-usuario/informacao-usuario.component';
 import { ListaReservasComponent } from './pages/lista-reservas/lista-reservas.component';
+import { PagamentoComponent } from './pages/pagamento/pagamento.component';
 
 const routes: Routes = [
   {path: 'home', component:LoginPageComponent},
@@ -27,7 +28,8 @@ const routes: Routes = [
   {path:'editar/quarto/:id',component:EditarQuartoComponent},
   {path:'criar',component:CriarQuartoComponent},
   {path:'editar/usuario',component:InformacaoUsuarioComponent},
-  {path:'reservas',component:ListaReservasComponent}
+  {path:'reservas',component:ListaReservasComponent},
+  {path:'pagamento',component:PagamentoComponent}
 ];
 
 @NgModule({

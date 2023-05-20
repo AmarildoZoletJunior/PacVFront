@@ -15,6 +15,8 @@ import { EditarQuartoComponent } from './editar-quarto/editar-quarto.component';
 import { CriarQuartoComponent } from './criar-quarto/criar-quarto.component';
 import { InformacaoUsuarioComponent } from './informacao-usuario/informacao-usuario.component';
 import { ListaReservasComponent } from './lista-reservas/lista-reservas.component';
+import { PagamentoComponent } from './pagamento/pagamento.component';
+import { ReservaInformacaoComponent } from './reserva-informacao/reserva-informacao.component';
 
 
 
@@ -32,7 +34,9 @@ import { ListaReservasComponent } from './lista-reservas/lista-reservas.componen
     EditarQuartoComponent,
     CriarQuartoComponent,
     InformacaoUsuarioComponent,
-    ListaReservasComponent
+    ListaReservasComponent,
+    PagamentoComponent,
+    ReservaInformacaoComponent
   ],
   imports: [
     CommonModule,
