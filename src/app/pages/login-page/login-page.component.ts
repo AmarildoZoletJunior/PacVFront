@@ -17,7 +17,7 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {
     this.formulario = new FormGroup({
       email: new FormControl('',[Validators.required,Validators.email]),
-      password: new FormControl('',[Validators.required,Validators.minLength(3)])
+      password: new FormControl('',[Validators.required,Validators.pattern("^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*()_+])[A-Za-z0-9!@#$%^&*()_+]{8,}$")]),
     })
   }
 
