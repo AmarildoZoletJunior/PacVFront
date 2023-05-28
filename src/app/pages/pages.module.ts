@@ -17,6 +17,7 @@ import { InformacaoUsuarioComponent } from './informacao-usuario/informacao-usua
 import { ListaReservasComponent } from './lista-reservas/lista-reservas.component';
 import { PagamentoComponent } from './pagamento/pagamento.component';
 import { ReservaInformacaoComponent } from './reserva-informacao/reserva-informacao.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 
 
@@ -36,7 +37,8 @@ import { ReservaInformacaoComponent } from './reserva-informacao/reserva-informa
     InformacaoUsuarioComponent,
     ListaReservasComponent,
     PagamentoComponent,
-    ReservaInformacaoComponent
+    ReservaInformacaoComponent,
+    HomePageComponent
   ],
   imports: [
     CommonModule,
