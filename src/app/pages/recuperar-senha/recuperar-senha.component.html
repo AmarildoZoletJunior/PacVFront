@@ -1,7 +1,7 @@
 <div class="container-fluid col-4 mt-5">
     <h2 class="text-center">Recuperação de senha</h2>
     <p class="">Digite uma senha forte, com pelo menos 1 letra maiúscula, 1 letra minúscula e 1 número.</p>
-  <form>
+  <form [formGroup]="formulario" (ngSubmit)="enviarDados()">
       <div class="form-outline mb-4">
         <label class="form-label" for="form2Example1">Nova senha</label>
         <input type="text" id="novasenha" name="novasenha" formControlName="novasenha" class="form-control" />

@@ -32,4 +32,10 @@ export class RecuperarSenhaComponent implements OnInit{
     return null
   }
 
+  enviarDados(){
+    if(this.formulario.valid){
+      
+    }
+  }
+
 }

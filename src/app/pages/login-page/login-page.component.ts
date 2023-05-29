@@ -1,9 +1,7 @@
 import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/Auth/Service/Request/auth.service';
-import { ClientResponse } from 'src/app/services/Client/Interface/client-response';
-import { ClientService } from 'src/app/services/Client/Service/client.service';
+import { AuthService } from 'src/app/services/Services/Auth/Service/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -26,14 +24,19 @@ export class LoginPageComponent implements OnInit {
 
     enviarDados(){
       if(this.formulario.valid){
-        console.log(this.formulario.value)
         this.authService.AuthClient(this.formulario.value).subscribe(x => {
           localStorage.setItem("keyToken",x.token);
           localStorage.setItem("idUser",String(x.clientId));
         },(error)=>{
-          console.log(error)
+          if(error instanceof HttpErrorResponse)
+          {
+              if(error.status == 401)
+              {
+                console.clear();
+                this.formulario.setValue({email:this.formulario.value['email'],password:''})
+              }
+          }
         })
       }
-      console.log("Ok")
     }
 }

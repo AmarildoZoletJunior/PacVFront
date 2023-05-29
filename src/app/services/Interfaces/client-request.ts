@@ -3,6 +3,7 @@ export interface ClientRequest {
     surname: string
     documentNumber: string
     email: string
+    phone:string
     password: string
   }
   

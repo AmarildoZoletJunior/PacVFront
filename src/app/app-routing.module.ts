@@ -35,7 +35,7 @@ const routes: Routes = [
   {path:'pagamento',component:PagamentoComponent},
   {path:'sobre',component:SobreComponent},
   {path:'reserva/:id',component:ReservaInformacaoComponent},
-    {path:'homepage',component:HomePageComponent}
+  {path:'homepage',component:HomePageComponent}
 ];
 
 @NgModule({

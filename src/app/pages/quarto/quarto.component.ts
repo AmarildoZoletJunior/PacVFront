@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route } from '@angular/router';
-import { AuthService } from 'src/app/services/Auth/Service/Request/auth.service';
-import { RoomResponseWithImage } from 'src/app/services/Room/Interface/room-with-images';
-import { RoomService } from 'src/app/services/Room/Service/room.service';
+import { RoomResponseWithImage } from 'src/app/services/Interfaces/room-with-images';
+import { RoomService } from 'src/app/services/Services/Room/Servico/room.service';
 
 @Component({
   selector: 'app-quarto',

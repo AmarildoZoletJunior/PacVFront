@@ -1,12 +1,12 @@
 <div class="col-8 mx-auto my-5">
-    <form >
+    <form [formGroup]="formulario" (ngSubmit)="enviarDados()">
       <div class="d-flex flex-column flex-xxl-row flex-xl-row flex-lg-row flex-md-column flex-sm-column justify-content-between">
       <div class="col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 p-0 my-0 mr-1">
         <div class="form-group">
           <label for="image">Imagem principal:</label>
           <div class="custom-file">
-            <input type="file" id="image" (change)="ArquivoImagemPrincipalNome($event)" name="imagemprincipal" formControlName="imagemprincipal" id="imagemprincipal" class="custom-file-input">
-            <label class="custom-file-label" for="image">{{ ImagemPrincipal }}</label>
+            <input type="file" id="image" (change)="ArquivoImagemPrincipalNome($event)" (change)="selecionarImagemPrincipal($event)" name="imagemprincipal" formControlName="imagemprincipal" id="imagemprincipal" class="custom-file-input">
+            <label class="custom-file-label" for="image">{{ ImagemPrincipalNome }}</label>
           </div>
         </div>
       </div>
@@ -15,23 +15,23 @@
           <label for="image">Demais imagens</label>
           <div class="custom-file">
             <input type="file" id="image" name="imagensquarto" formControlName="imagensquarto" id="imagensquarto" (change)="ArquivoImagensSecundarias($event)" class="custom-file-input" multiple>
-            <label class="custom-file-label" for="image">{{ DemaisImagens }}</label>
+            <label class="custom-file-label" for="image">{{ DemaisImagensNome }}</label>
           </div>
         </div>
       </div>
     </div>
         <div class="input-group mb-3">
-           <input type="text" class="form-control mr-1" placeholder="Numero do quarto" id="NumeroDoQuarto" name="NumeroDoQuarto" formControlName="NumeroDoQuarto" aria-label="Numero do quarto">
-          <input type="text" class="form-control ml-1" placeholder="Andar" id="Andar" name="Andar" formControlName="Andar" aria-label="Andar">
+           <input type="text" class="form-control mr-1" placeholder="Numero do quarto" id="Number" name="Number" formControlName="Number" aria-label="Numero do quarto">
+          <input type="text" class="form-control ml-1" placeholder="Andar" id="Level" name="Level" formControlName="Level" aria-label="Level">
         </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Nome" id="Nome" name="Nome" formControlName="Nome">
+          <input type="text" class="form-control" placeholder="Nome" id="Name" name="Name" formControlName="Name">
         </div>
           <div class="form-outline mb-4">
-            <textarea type="text" class="form-control mr-1" placeholder="Descrição do quarto" id="Descricao" name="Descricao" formControlName="Descricao" aria-label="Descricao"></textarea>
+            <textarea type="text" class="form-control mr-1" placeholder="Descrição do quarto" id="Description" name="Description" formControlName="Description" aria-label="Descricao"></textarea>
           </div>
-          <div class="d-flex col-6 mx-auto flex-row justify-content-between align-items-baseline">
-            <button type="button" class="btn btn-success h-25 m-0 btn-block"> <a routerLink="/signin" style="color:black;text-decoration:none"> Registrar</a></button>
+          <div class="d-flex col-12 col-lxx-6 col-lx-6 col-lg-6 col-md-12 col-sm-12 mx-auto flex-row justify-content-between align-items-baseline">
+            <button type="submit" class="btn btn-success h-25 m-0 w-100 btn-block">Registrar</button>
           </div>
         </form>
 </div>
