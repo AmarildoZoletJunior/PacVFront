@@ -16,16 +16,17 @@ import { ListaReservasComponent } from './pages/lista-reservas/lista-reservas.co
 import { PagamentoComponent } from './pages/pagamento/pagamento.component';
 import { SobreComponent } from './pages/sobre/sobre.component';
 import { ReservaInformacaoComponent } from './pages/reserva-informacao/reserva-informacao.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
 
 const routes: Routes = [
-  {path: 'home', component:LoginPageComponent},
-  {path: 'signin', component:SigninPageComponent},
-  {path: 'recuperacao', component:RecuperarSenhaComponent},
-  {path: 'contato', component:ContatoComponent},
-  {path: 'areacliente', component:AreaDoClienteComponent},
+  {path:'home', component:LoginPageComponent},
+  {path:'signin', component:SigninPageComponent},
+  {path:'recuperacao', component:RecuperarSenhaComponent},
+  {path:'contato', component:ContatoComponent},
+  {path:'areacliente', component:AreaDoClienteComponent},
   {path:'login',component:LoginPageComponent},
   {path:'acomodacoes',component:AcomodacoesComponent},
-  {path: 'quarto/:id', component:QuartoComponent},
+  {path:'quarto/:id', component:QuartoComponent},
   {path:'administrador',component:MenuAdministradorListaComponent},
   {path:'editar/quarto/:id',component:EditarQuartoComponent},
   {path:'criar',component:CriarQuartoComponent},
@@ -33,7 +34,8 @@ const routes: Routes = [
   {path:'reservas',component:ListaReservasComponent},
   {path:'pagamento',component:PagamentoComponent},
   {path:'sobre',component:SobreComponent},
-  {path:'reserva/:id',component:ReservaInformacaoComponent}
+  {path:'reserva/:id',component:ReservaInformacaoComponent},
+    {path:'homepage',component:HomePageComponent}
 ];
 
 @NgModule({
