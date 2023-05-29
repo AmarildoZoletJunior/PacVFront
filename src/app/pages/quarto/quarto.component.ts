@@ -19,6 +19,7 @@ export class QuartoComponent implements OnInit{
     this.idRoute = this.route.snapshot.paramMap.get("id")
     this.roomService.GetRoomByIdWithImage(Number(this.idRoute)).subscribe(x =>{
       this.room = x
+      console.log(x.images)
       console.log(x)
     },(error)=>{
       console.log(error)

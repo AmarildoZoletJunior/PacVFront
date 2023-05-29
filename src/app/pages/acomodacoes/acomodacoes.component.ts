@@ -12,6 +12,7 @@ export class AcomodacoesComponent implements OnInit {
 constructor(private roomService:RoomService){}
   ngOnInit(): void {
     this.roomService.GetRoomsAvailable().subscribe(x => this.ListRooms = x);
+    localStorage.setItem("add","olateste")
   }
 
   transform(base64: string): string {

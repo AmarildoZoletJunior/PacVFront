@@ -41,16 +41,15 @@
           <h1>Está com dúvida?</h1>
           <p>Deixe neste formulário seu contato, entraremos em contato com você em breve.</p>
           <div class="input-group mb-3">
-            <input type="text" class="form-control mr-1" placeholder="Nome" aria-label="Nome">
-            <input type="text" class="form-control ml-1" placeholder="Telefone" aria-label="Telefone">
+            <input type="text" class="form-control mr-1" name="nome" id="nome" formControlName="nome" placeholder="Nome" aria-label="Nome">
+            <input type="text" class="form-control ml-1" placeholder="Telefone" formControlName="telefone" name="telefone" aria-label="Telefone">
           </div>
-          
           <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Email" aria-label="Email">
+            <input type="text" class="form-control" placeholder="Email" formControlName="email" id="email" name="email" aria-label="Email">
           </div>
           
           <div class="input-group">
-            <textarea class="form-control" placeholder="Digite sua mensagem aqui" aria-label="With textarea"></textarea>
+            <textarea class="form-control" formControlName="descricao" id="descricao" name="descricao" placeholder="Digite sua mensagem aqui" aria-label="With textarea"></textarea>
           </div>
          <button class="btn btn-primary mt-3">Enviar</button>
         </div>

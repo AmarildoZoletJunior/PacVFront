@@ -1,11 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-editar-quarto',
   templateUrl: './editar-quarto.component.html',
   styleUrls: ['./editar-quarto.component.css']
 })
-export class EditarQuartoComponent {
+export class EditarQuartoComponent implements OnInit{
+  formulario!:FormGroup;
+
+  ngOnInit(): void {
+    this.formulario = new FormGroup({
+      email: new FormControl('',[Validators.required,Validators.email]),
+      password: new FormControl('',[Validators.required,Validators.minLength(3)])
+    })
+  }
   ImagemPrincipal: string = '';
   DemaisImagens: string = '';
 
