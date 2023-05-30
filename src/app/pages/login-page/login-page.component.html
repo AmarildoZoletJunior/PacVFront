@@ -1,4 +1,4 @@
-<div class="container-fluid col-8 col-xxl-4 col-xl-4 col-lg-4 col-md-8 col-sm-8 col-sm-8 mt-5">
+<div class="container-fluid col-8 col-xxl-4 col-xl-4 col-lg-4 col-md-8 col-sm-8 col-sm-8 mt-5 my-5">
   <h2 class="text-center">Logue na sua conta</h2>
   <form [formGroup]="formulario" (ngSubmit)="enviarDados()">
     <div class="form-outline mb-4">
@@ -17,6 +17,8 @@
     </div>
     <div class="alert alert-danger mt-3" *ngIf="showBlockedMessage">
       Usuário bloqueado. Tente novamente em 30 segundos.
+      <button type="button" class="btn btn-primary mr-1 h-25 btn-block"> <a routerLink="/signin"> Registrar</a></button>
+      <button type="submit" class="btn btn-success h-25 ml-1 btn-block">Entrar</button>  
     </div>
   </form>
 </div>

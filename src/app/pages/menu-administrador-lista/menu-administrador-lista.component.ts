@@ -1,7 +1,7 @@
 import { HttpStatusCode } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { RoomResponse } from 'src/app/services/Room/Interface/room-response';
-import { RoomService } from 'src/app/services/Room/Service/room.service';
+import { RoomResponse } from 'src/app/services/Interfaces/room-response';
+import { RoomService } from 'src/app/services/Services/Room/Servico/room.service';
 
 @Component({
   selector: 'app-menu-administrador-lista',

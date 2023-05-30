@@ -25,3 +25,8 @@ a{
     min-width: 100px;
     max-width: 600px;
 }
+.cartao{
+    -webkit-box-shadow: 13px 8px 10px 0px rgba(0,0,0,0.36);
+    -moz-box-shadow: 13px 8px 10px 0px rgba(0,0,0,0.36);
+    box-shadow: 13px 8px 10px 0px rgba(0,0,0,0.36);
+}

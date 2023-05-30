@@ -1,8 +1,17 @@
-<div class="col-12 d-flex flex-wrap flex-row flex-xxl-row flex-xl-row flex-lg-row flex-md-column flex-sm-column flex-wrap justify-content-center">
-<div class="col-12 col-xxl-4 col-xl-4 col-lg-4 col-md-8 col-sm-8 col-sm-8" *ngFor="let room of ListRooms">
+<div class="jumbotron p-3 p-md-5 text-white rounded bg-light">
+  <div class="col-md-12 px-0 text-center">
+      <h1 class="display-0 col-md-6 mx-auto text-warning font-italic">Nossas Acomodações</h1>
+      <p class="lead my-3 col-md-6 text-start mx-auto text-muted">Nossos quartos foram criados para atender às suas necessidades e superar as suas expectativas. Com uma combinação de estilo e conforto, cada espaço foi cuidadosamente decorado para oferecer uma atmosfera acolhedora e relaxante.</p>
+  </div>
+</div>
+<div class="col-12 d-flex flex-wrap flex-row flex-xxl-row flex-xl-row flex-lg-row flex-md-column flex-sm-column flex-wrap justify-content-center align-items-center">
+<div class="col-12 col-xxl-4 col-xl-4 col-lg-4 col-md-8 col-sm-8 col-sm-8 mb-5" *ngFor="let room of ListRooms">
 <a routerLink="/quarto/{{room.id}}" class="">
-<div class="card mt-5 mb-3 col-12 mx-auto">
-  <img class="imageCard mx-auto mt-2 img-fluid w-100" [src]="room.images[0].imageBase | base64ToImage" />
+<div class="card mt-5 mb-3 col-12 mx-auto cartao">
+  <img *ngIf="room.images.length > 0;else imagemvazia " class="imageCard img-fluid w-100" [src]="room.images[0].imageBase | base64ToImage" />
+  <ng-template #imagemvazia>
+    <img src="../../../assets/sem-foto.jpg" alt="sem imagem" class="imageCard img-fluid w-100">
+  </ng-template>
     <div class="card-body">
       <h5 class="card-title">{{room.name}}</h5>
       <p class="card-text">

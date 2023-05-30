@@ -14,6 +14,8 @@ import { CriarQuartoComponent } from './pages/criar-quarto/criar-quarto.componen
 import { InformacaoUsuarioComponent } from './pages/informacao-usuario/informacao-usuario.component';
 import { ListaReservasComponent } from './pages/lista-reservas/lista-reservas.component';
 import { PagamentoComponent } from './pages/pagamento/pagamento.component';
+import { SobreComponent } from './pages/sobre/sobre.component';
+import { ReservaInformacaoComponent } from './pages/reserva-informacao/reserva-informacao.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 
 const routes: Routes = [
@@ -31,6 +33,8 @@ const routes: Routes = [
   {path:'editar/usuario',component:InformacaoUsuarioComponent},
   {path:'reservas',component:ListaReservasComponent},
   {path:'pagamento',component:PagamentoComponent},
+  {path:'sobre',component:SobreComponent},
+  {path:'reserva/:id',component:ReservaInformacaoComponent},
   {path:'homepage',component:HomePageComponent}
 ];
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RoomResponseWithImage } from 'src/app/services/Room/Interface/room-with-images';
-import { RoomService } from 'src/app/services/Room/Service/room.service';
+import { RoomResponseWithImage } from 'src/app/services/Interfaces/room-with-images';
+import { RoomService } from 'src/app/services/Services/Room/Servico/room.service';
 
 @Component({
   selector: 'app-acomodacoes',
@@ -12,6 +12,7 @@ export class AcomodacoesComponent implements OnInit {
 constructor(private roomService:RoomService){}
   ngOnInit(): void {
     this.roomService.GetRoomsAvailable().subscribe(x => this.ListRooms = x);
+    localStorage.setItem("add","olateste")
   }
 
   transform(base64: string): string {
