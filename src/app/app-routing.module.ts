@@ -30,7 +30,7 @@ const routes: Routes = [
   {path:'administrador',component:MenuAdministradorListaComponent},
   {path:'editar/quarto/:id',component:EditarQuartoComponent},
   {path:'criar',component:CriarQuartoComponent},
-  {path:'editar/usuario',component:InformacaoUsuarioComponent},
+  {path:'editar/usuario/:id',component:InformacaoUsuarioComponent},
   {path:'reservas',component:ListaReservasComponent},
   {path:'pagamento',component:PagamentoComponent},
   {path:'sobre',component:SobreComponent},
