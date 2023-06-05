@@ -1,30 +1,40 @@
-<div class="col-8 mx-auto my-5">
-    <form >
-      <div class="d-flex flex-column flex-xxl-row flex-xl-row flex-lg-row flex-md-column flex-sm-column justify-content-between">
+<div *ngIf="formulario != null; else loading" class="col-8 mx-auto my-5">
+  <form [formGroup]="formulario" #meuFormulario="ngForm">
+    <div
+      class="d-flex flex-column flex-xxl-row flex-xl-row flex-lg-row flex-md-column flex-sm-column justify-content-between">
       <div class="col-12 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 p-0 my-0">
         <div class="form-group">
           <label for="image">Imagem principal:</label>
           <div class="custom-file">
-            <input type="file" id="image" (change)="ArquivoImagemPrincipalNome($event)" class="custom-file-input">
+            <input type="file" id="image" (change)="ArquivoImagemPrincipalNome($event)"
+              (change)="ModificarPropriedade()" class="custom-file-input">
             <label class="custom-file-label" for="image">{{ ImagemPrincipal }}</label>
           </div>
         </div>
       </div>
     </div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control mr-1" placeholder="Andar" id="Andar" name="Andar" formControlName="Andar" aria-label="Andar">
-          <input type="text" class="form-control ml-1" placeholder="Nome" id="Nome" name="Nome" formControlName="Nome">
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control mr-1" placeholder="Descrição" id="Descrição" name="Descrição" formControlName="Descrição" aria-label="Descrição">
-          <input type="text" class="form-control ml-1" placeholder="Numero do quarto" id="Numero do quarto" name="Numero do quarto" formControlName="Numero do quarto" aria-label="Numero do quarto">
-        </div>
-          <div class="form-outline mb-4">
-            <textarea type="text" class="form-control mr-1" placeholder="Descrição do quarto" id="Descricao" name="Descricao" formControlName="Descricao" aria-label="Descricao"></textarea>
-          </div>
-          <div class="d-flex col-6 mx-auto flex-row justify-content-between align-items-baseline">
-            <button type="button" class="btn btn-success h-25 m-0 btn-block"> <a routerLink="/signin" style="color:black;text-decoration:none"> Registrar</a></button>
-          </div>
-        </form>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control mr-1" (change)="ModificarPropriedade()" placeholder="Andar" id="Andar"
+        name="Andar" formControlName="andar" aria-label="Andar">
+      <input type="text" class="form-control ml-1" (change)="ModificarPropriedade()" placeholder="Nome" id="Nome"
+        name="Nome" formControlName="nome">
+    </div>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" (change)="ModificarPropriedade()" placeholder="Numero do quarto"
+        id="Numero do quarto" name="Numero do quarto" formControlName="numero" aria-label="Numero do quarto">
+    </div>
+    <div class="form-outline mb-4">
+      <textarea type="text" class="form-control" (change)="ModificarPropriedade()" placeholder="Descrição do quarto"
+        id="Descricao" name="Descricao" formControlName="descricao" aria-label="Descricao"></textarea>
+    </div>
+    <div class="d-flex col-6 mx-auto flex-row justify-content-between align-items-baseline">
+      <button type="button" *ngIf="ModificarPropriedade() == true" class="btn btn-success h-25 m-0 btn-block">Salvar
+        alterações</button>
+    </div>
+  </form>
 </div>
-
+<ng-template #loading>
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</ng-template>

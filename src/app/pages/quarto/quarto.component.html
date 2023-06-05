@@ -46,12 +46,12 @@
   </div>
   <div class="col-6 m-2">
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-      data-bs-whatever="@mdo">Open modal for @mdo</button>
+      data-bs-whatever="@mdo">Alugar quarto</button>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Aqui você pode selecionar quantos dias deseja ficar.</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -82,3 +82,14 @@
     </div>
   </div>
 </ng-template>
+
+<!-- Importe as bibliotecas ngx-bootstrap no seu componente -->
+<div class="row">
+  <div class="col-xs-12 col-12 col-md-4 form-group mb-3">
+    <input type="text"
+           placeholder="Datepicker"
+           class="form-control"
+           bsDatepicker
+           [datesDisabled]="disabledDates">
+  </div>
+</div>

@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PagesModule } from './pages/pages.module';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SigninPageComponent } from './pages/signin-page/signin-page.component';
 import { RecuperarSenhaComponent } from './pages/recuperar-senha/recuperar-senha.component';
@@ -12,6 +11,8 @@ import { AreaDoClienteComponent } from './pages/area-do-cliente/area-do-cliente.
 import { ComponentsModule } from './components/components.module';
 import {HttpClientModule} from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PagesModule } from './pages/pages.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -26,7 +27,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ComponentsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

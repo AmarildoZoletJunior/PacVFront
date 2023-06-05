@@ -18,7 +18,7 @@ import { ListaReservasComponent } from './lista-reservas/lista-reservas.componen
 import { PagamentoComponent } from './pagamento/pagamento.component';
 import { ReservaInformacaoComponent } from './reserva-informacao/reserva-informacao.component';
 import { HomePageComponent } from './home-page/home-page.component';
-
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -38,14 +38,16 @@ import { HomePageComponent } from './home-page/home-page.component';
     ListaReservasComponent,
     PagamentoComponent,
     ReservaInformacaoComponent,
-    HomePageComponent
+    HomePageComponent,
+
   ],
   imports: [
     CommonModule,
     ComponentsModule,
     ReactiveFormsModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BsDatepickerModule
   ],
   exports:[
     LoginPageComponent,
