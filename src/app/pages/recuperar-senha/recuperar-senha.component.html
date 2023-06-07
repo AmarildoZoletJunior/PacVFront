@@ -1,17 +1,20 @@
 <div class="container-fluid col-4 mt-5">
-    <h2 class="text-center">Recuperação de senha</h2>
-    <p class="">Digite uma senha forte, com pelo menos 1 letra maiúscula, 1 letra minúscula e 1 número.</p>
+  <h2 class="text-center">Recuperação de senha</h2>
+  <p class="">Digite uma senha forte, com pelo menos 1 letra maiúscula, 1 letra minúscula e 1 número.</p>
   <form [formGroup]="formulario" (ngSubmit)="enviarDados()">
-      <div class="form-outline mb-4">
-        <label class="form-label" for="form2Example1">Nova senha</label>
-        <input type="text" id="password" name="password" formControlName="password" class="form-control" />
-      </div>
-      <div class="form-outline mb-4">
-        <label class="form-label" for="form2Example2">Confirmar senha</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword" class="form-control" />
-      </div>
-      <div class="d-flex flex-row justify-content-between align-items-baseline">
-        <button type="submit" class="btn btn-primary h-25 btn-block">Recuperar Senha</button>
-      </div>
-    </form>
-  </div>
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form2Example1">Nova senha</label>
+      <input type="text" id="password" name="password" formControlName="password" class="form-control"
+        [class.is-invalid]="formulario.controls['password'].invalid && formulario.controls['password'].touched" />
+    </div>
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form2Example2">Confirmar senha</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword"
+        class="form-control"
+        [class.is-invalid]="formulario.controls['confirmPassword'].invalid && formulario.controls['confirmPassword'].touched" />
+    </div>
+    <div class="d-flex flex-row justify-content-between align-items-baseline">
+      <button type="submit" class="btn btn-primary h-25 btn-block" [disabled]="!formulario.valid">Recuperar Senha</button>
+    </div>
+  </form>
+</div>
