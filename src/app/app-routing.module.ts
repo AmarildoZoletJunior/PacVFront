@@ -17,14 +17,14 @@ import { PagamentoComponent } from './pages/pagamento/pagamento.component';
 import { SobreComponent } from './pages/sobre/sobre.component';
 import { ReservaInformacaoComponent } from './pages/reserva-informacao/reserva-informacao.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { GuardaTestGuard } from './guardas/guarda-test.guard';
 
 const routes: Routes = [
-  {path:'home', component:LoginPageComponent},
   {path:'signin', component:SigninPageComponent},
   {path:'recuperacao', component:RecuperarSenhaComponent},
   {path:'contato', component:ContatoComponent},
   {path:'areacliente', component:AreaDoClienteComponent},
-  {path:'login',component:LoginPageComponent},
+  {path:'login',component:LoginPageComponent,canActivate:[GuardaTestGuard]},
   {path:'acomodacoes',component:AcomodacoesComponent},
   {path:'quarto/:id', component:QuartoComponent},
   {path:'administrador',component:MenuAdministradorListaComponent},
@@ -35,7 +35,8 @@ const routes: Routes = [
   {path:'pagamento',component:PagamentoComponent},
   {path:'sobre',component:SobreComponent},
   {path:'reserva/:id',component:ReservaInformacaoComponent},
-  {path:'homepage',component:HomePageComponent}
+  {path:'homepage',component:HomePageComponent},
+  {path:'**',component:HomePageComponent}
 ];
 
 @NgModule({

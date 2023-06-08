@@ -11,8 +11,8 @@ import { AreaDoClienteComponent } from './pages/area-do-cliente/area-do-cliente.
 import { ComponentsModule } from './components/components.module';
 import {HttpClientModule} from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PagesModule } from './pages/pages.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PagesModule } from './pages/pages.module';
 
 
 
