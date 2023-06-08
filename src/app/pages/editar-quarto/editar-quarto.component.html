@@ -15,20 +15,24 @@
     </div>
     <div class="input-group mb-3">
       <input type="text" class="form-control mr-1" (change)="ModificarPropriedade()" placeholder="Andar" id="Andar"
-        name="Andar" formControlName="andar" aria-label="Andar">
+        name="Andar" formControlName="andar" aria-label="Andar"
+        [class.is-invalid]="formulario.controls['andar'].invalid && formulario.controls['andar'].touched" />
       <input type="text" class="form-control ml-1" (change)="ModificarPropriedade()" placeholder="Nome" id="Nome"
-        name="Nome" formControlName="nome">
+        name="Nome" formControlName="nome"
+        [class.is-invalid]="formulario.controls['nome'].invalid && formulario.controls['nome'].touched" />
     </div>
     <div class="input-group mb-3">
       <input type="text" class="form-control" (change)="ModificarPropriedade()" placeholder="Numero do quarto"
-        id="Numero do quarto" name="Numero do quarto" formControlName="numero" aria-label="Numero do quarto">
+        id="Numero do quarto" name="Numero do quarto" formControlName="numero" aria-label="Numero do quarto"
+        [class.is-invalid]="formulario.controls['numero'].invalid && formulario.controls['numero'].touched" />
     </div>
     <div class="form-outline mb-4">
       <textarea type="text" class="form-control" (change)="ModificarPropriedade()" placeholder="Descrição do quarto"
         id="Descricao" name="Descricao" formControlName="descricao" aria-label="Descricao"></textarea>
     </div>
     <div class="d-flex col-6 mx-auto flex-row justify-content-between align-items-baseline">
-      <button type="button" *ngIf="ModificarPropriedade() == true" class="btn btn-success h-25 m-0 btn-block">Salvar
+      <button type="button" *ngIf="ModificarPropriedade() == true" class="btn btn-success h-25 m-0 btn-block"
+        [disabled]="!formulario.valid">Salvar
         alterações</button>
     </div>
   </form>

@@ -24,7 +24,7 @@ const routes: Routes = [
   {path:'recuperacao', component:RecuperarSenhaComponent},
   {path:'contato', component:ContatoComponent},
   {path:'areacliente', component:AreaDoClienteComponent},
-  {path:'login',component:LoginPageComponent,canActivate:[GuardaTestGuard]},
+  {path:'login',component:LoginPageComponent},
   {path:'acomodacoes',component:AcomodacoesComponent},
   {path:'quarto/:id', component:QuartoComponent},
   {path:'administrador',component:MenuAdministradorListaComponent},

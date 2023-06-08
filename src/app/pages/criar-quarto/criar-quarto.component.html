@@ -1,11 +1,15 @@
 <div class="col-8 mx-auto my-5">
-    <form [formGroup]="formulario" (ngSubmit)="enviarDados()">
-      <div class="d-flex flex-column flex-xxl-row flex-xl-row flex-lg-row flex-md-column flex-sm-column justify-content-between">
+  <form [formGroup]="formulario" (ngSubmit)="enviarDados()">
+    <div
+      class="d-flex flex-column flex-xxl-row flex-xl-row flex-lg-row flex-md-column flex-sm-column justify-content-between">
       <div class="col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 p-0 my-0 mr-1">
         <div class="form-group">
           <label for="image">Imagem principal:</label>
           <div class="custom-file">
-            <input type="file" id="image" (change)="ArquivoImagemPrincipalNome($event)" (change)="selecionarImagemPrincipal($event)" name="imagemprincipal" formControlName="imagemprincipal" id="imagemprincipal" class="custom-file-input">
+            <input type="file" id="image" (change)="ArquivoImagemPrincipalNome($event)"
+              (change)="selecionarImagemPrincipal($event)" name="imagemprincipal" formControlName="imagemprincipal"
+              id="imagemprincipal" class="custom-file-input"
+              [class.is-invalid]="formulario.controls['imagemprincipal'].invalid && formulario.controls['imagemprincipal'].touched" />
             <label class="custom-file-label" for="image">{{ ImagemPrincipalNome }}</label>
           </div>
         </div>
@@ -14,25 +18,33 @@
         <div class="form-group">
           <label for="image">Demais imagens</label>
           <div class="custom-file">
-            <input type="file" id="image" name="imagensquarto" formControlName="imagensquarto" id="imagensquarto" (change)="ArquivoImagensSecundarias($event)" class="custom-file-input" multiple>
+            <input type="file" id="image" name="imagensquarto" formControlName="imagensquarto" id="imagensquarto"
+              (change)="ArquivoImagensSecundarias($event)" class="custom-file-input" multiple
+              [class.is-invalid]="formulario.controls['imagensquarto'].invalid && formulario.controls['imagensquarto'].touched" />
             <label class="custom-file-label" for="image">{{ DemaisImagensNome }}</label>
           </div>
         </div>
       </div>
     </div>
-        <div class="input-group mb-3">
-           <input type="text" class="form-control mr-1" placeholder="Numero do quarto" id="Number" name="Number" formControlName="Number" aria-label="Numero do quarto">
-          <input type="text" class="form-control ml-1" placeholder="Andar" id="Level" name="Level" formControlName="Level" aria-label="Level">
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Nome" id="Name" name="Name" formControlName="Name">
-        </div>
-          <div class="form-outline mb-4">
-            <textarea type="text" class="form-control mr-1" placeholder="Descrição do quarto" id="Description" name="Description" formControlName="Description" aria-label="Descricao"></textarea>
-          </div>
-          <div class="d-flex col-12 col-lxx-6 col-lx-6 col-lg-6 col-md-12 col-sm-12 mx-auto flex-row justify-content-between align-items-baseline">
-            <button type="submit" class="btn btn-success h-25 m-0 w-100 btn-block">Registrar</button>
-          </div>
-        </form>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control mr-1" placeholder="Numero do quarto" id="Number" name="Number"
+        formControlName="Number" aria-label="Numero do quarto"
+        [class.is-invalid]="formulario.controls['Number'].invalid && formulario.controls['Number'].touched" />
+      <input type="text" class="form-control ml-1" placeholder="Andar" id="Level" name="Level" formControlName="Level"
+        aria-label="Level"
+        [class.is-invalid]="formulario.controls['Level'].invalid && formulario.controls['Level'].touched" />
+    </div>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Nome" id="Name" name="Name" formControlName="Name"
+      [class.is-invalid]="formulario.controls['Name'].invalid && formulario.controls['Name'].touched" />
+    </div>
+    <div class="form-outline mb-4">
+      <textarea type="text" class="form-control mr-1" placeholder="Descrição do quarto" id="Description"
+        name="Description" formControlName="Description" aria-label="Descricao"></textarea>
+    </div>
+    <div
+      class="d-flex col-12 col-lxx-6 col-lx-6 col-lg-6 col-md-12 col-sm-12 mx-auto flex-row justify-content-between align-items-baseline">
+      <button type="submit" class="btn btn-success h-25 m-0 w-100 btn-block" [disabled]="!formulario.valid">Registrar</button>
+    </div>
+  </form>
 </div>
-
