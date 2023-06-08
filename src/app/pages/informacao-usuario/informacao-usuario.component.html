@@ -1,51 +1,62 @@
-<div *ngIf="this.UserData != null;else loading" class="col-12 col-xxl-8 col-xl-8 col-lg-8 col-md-12 col-sm-12 mx-auto my-5 p-5">
-    <form [formGroup]="formulario" (ngSubmit)="enviarDados()" #meuFormulario="ngForm">
-        <div class="input-group">
-            <div class="input-group col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 input-group-sm mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Nome</span>
-                </div>
-                <input type="text" id="nome"  (change)="MudarValor()" name="nome" formControlName="nome" class="form-control p-4" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-sm">
-              </div>
-              <div class="input-group col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 input-group-sm mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"  id="inputGroup-sizing-sm">Sobrenome</span>
-                </div>
-                <input type="text" id="sobrenome" (change)="MudarValor()" name="sobrenome" formControlName="sobrenome" class="form-control p-4" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-sm">
-              </div>
+<div *ngIf="this.UserData != null;else loading"
+  class="col-12 col-xxl-8 col-xl-8 col-lg-8 col-md-12 col-sm-12 mx-auto my-5 p-5">
+  <form [formGroup]="formulario" (ngSubmit)="enviarDados()" #meuFormulario="ngForm">
+    <div class="input-group">
+      <div class="input-group col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Nome</span>
         </div>
-        <div class="input-group">
-            <div class="input-group col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 input-group-sm mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">CPF</span>
-                </div>
-                  <input type="text" [value]="UserData.documentNumber" disabled id="cpf" name="cpf" class="form-control p-4" aria-describedby="inputGroup-sizing-sm">
-              </div>
-              <div class="input-group col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 input-group-sm mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Telefone</span>
-                </div>
-                  <input type="text" id="telefone" [value]="UserData.phone" disabled name="telefone" class="form-control p-4"  aria-describedby="inputGroup-sizing-sm">
-              </div>
-        </div> <div class="input-group">
-            <div class="input-group col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 input-group-sm mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
-                </div>
-                  <input type="text" id="email" [value]="UserData.email" disabled name="email" class="form-control p-4" disabled aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-sm">
-              </div>
-              <div class="input-group col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 input-group-sm mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-sm">Senha</span>
-                </div>
-                  <input type="text" id="senha" name="senha" disabled value="*************" class="form-control p-4" disabled aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-sm">
-              </div>
+        <input type="text" id="nome" (change)="MudarValor()" name="nome" formControlName="nome" class="form-control p-4"
+          aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-sm"
+          [class.is-invalid]="formulario.controls['nome'].invalid && formulario.controls['nome'].touched" />
+      </div>
+      <div class="input-group col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Sobrenome</span>
         </div>
-        <div class="d-flex flex-row justify-content-between align-items-baseline">
-            <button type="button" class="btn btn-warning mx-2 h-25 btn-block"><a routerLink="/signin" style="text-decoration: none; color:white">Mudar senha</a></button>
-              <button type="submit" *ngIf="MudarValor()" class="btn btn-success h-25 btn-block">Salvar mudanças</button>  
-          </div>
-        </form>
+        <input type="text" id="sobrenome" (change)="MudarValor()" name="sobrenome" formControlName="sobrenome"
+          class="form-control p-4" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-sm"
+          [class.is-invalid]="formulario.controls['sobrenome'].invalid && formulario.controls['sobrenome'].touched" />
+      </div>
+    </div>
+    <div class="input-group">
+      <div class="input-group col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">CPF</span>
+        </div>
+        <input type="text" [value]="UserData.documentNumber" disabled id="cpf" name="cpf" class="form-control p-4"
+          aria-describedby="inputGroup-sizing-sm"/>
+      </div>
+      <div class="input-group col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Telefone</span>
+        </div>
+        <input type="text" id="telefone" [value]="UserData.phone" disabled name="telefone" class="form-control p-4"
+          aria-describedby="inputGroup-sizing-sm"/>
+      </div>
+    </div>
+    <div class="input-group">
+      <div class="input-group col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+        </div>
+        <input type="text" id="email" [value]="UserData.email" disabled name="email" class="form-control p-4" disabled
+          aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-sm">
+      </div>
+      <div class="input-group col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Senha</span>
+        </div>
+        <input type="text" id="senha" name="senha" disabled value="*************" class="form-control p-4" disabled
+          aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-sm">
+      </div>
+    </div>
+    <div class="d-flex flex-row justify-content-between align-items-baseline">
+      <button type="button" class="btn btn-warning mx-2 h-25 btn-block"><a routerLink="/signin"
+          style="text-decoration: none; color:white">Mudar senha</a></button>
+      <button type="submit" *ngIf="MudarValor()" class="btn btn-success h-25 btn-block">Salvar mudanças</button>
+    </div>
+  </form>
 </div>
 <ng-template #loading>
   <div class="spinner-border" role="status">
