@@ -55,7 +55,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="alert alert-danger" role="alert" *ngIf="ErroData == true">
-            Você selecionou um intervalo de datas que contém uma data que não está disponível no meio. Selecione novamente seu intervalo de datas
+            Você selecionou um intervalo de datas que contém uma data que não está disponível no meio ou não selecionou nada. Selecione novamente seu intervalo de datas
           </div>
           <div class="modal-body">
             <form>
@@ -76,15 +76,11 @@
                   </div>
                 </div>
               </div>
-              <div class="mb-3">
-                <label for="message-text" class="col-form-label">Message:</label>
-                <textarea class="form-control" id="message-text"></textarea>
-              </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Send message</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="button" (click)="enviarParaPagamento()" [attr.data-bs-dismiss]="dataValida ? null : 'modal'" class="btn btn-primary">Seguir para alugar</button>
           </div>
         </div>
       </div>
