@@ -14,7 +14,15 @@
         [class.is-invalid]="formulario.controls['confirmPassword'].invalid && formulario.controls['confirmPassword'].touched" />
     </div>
     <div class="d-flex flex-row justify-content-between align-items-baseline">
-      <button type="submit" class="btn btn-primary h-25 btn-block" [disabled]="!formulario.valid">Recuperar Senha</button>
+      <button type="submit" class="btn btn-primary h-25 btn-block"  [disabled]="!formulario.valid">Recuperar Senha</button>
+    </div>
+    <div class="alert alert-danger my-2" role="alert" *ngIf="errorMessage">
+      <div class="error-message">
+        <span class="error-icon">
+          <i class="fas fa-circle"></i>
+        </span>
+        {{ errorMessage }}
+      </div>
     </div>
   </form>
 </div>

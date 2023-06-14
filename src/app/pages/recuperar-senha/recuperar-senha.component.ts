@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ClientService } from 'src/app/services/Services/Client/client.service';
@@ -9,7 +10,7 @@ import { ClientService } from 'src/app/services/Services/Client/client.service';
 })
 export class RecuperarSenhaComponent implements OnInit{
   formulario!:FormGroup;
-
+  errorMessage: string = ''
   ngOnInit(): void {
     this.formulario = new FormGroup({
       password: new FormControl('',[Validators.required,Validators.pattern("^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*()_+])[A-Za-z0-9!@#$%^&*()_+]{8,}$")]),
@@ -34,6 +35,7 @@ export class RecuperarSenhaComponent implements OnInit{
   }
 constructor(private clientService:ClientService){}
   enviarDados(){
+    this.errorMessage = ''
     const campo1Control = this.formulario.get('password')?.value;
     const campo2Control = this.formulario.get('confirmPassword')?.value;
 console.log(campo1Control,campo2Control)
@@ -43,8 +45,15 @@ console.log(campo1Control,campo2Control)
           console.log(x)
         },(error)=>
         {
-console.log(error)
-        })
+          if (error instanceof HttpErrorResponse) {
+            if (error.error && Array.isArray(error.error) && error.error.length > 0) {
+              for (let i = 0; i < error.error.length; i++) {
+                const element = error.error[i];
+                this.errorMessage += `ERRO: ${element.title}:  ${element.message}\n`;
+              }
+            }
+          }
+        });
     }
   }
 

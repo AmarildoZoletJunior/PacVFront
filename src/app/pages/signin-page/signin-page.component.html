@@ -1,5 +1,5 @@
 <div class="container-fluid col-12 col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 col-sm-12 mt-5 my-5">
-  <h2 class="text-center">Se registre-se na plataforma</h2>
+  <h2 class="text-center">Cadastre-se</h2>
   <form [formGroup]="formulario" (ngSubmit)="enviarDados()">
     <div class="input-group mb-3">
       <input type="text" class="form-control mr-1" placeholder="Nome" id="nome" name="nome" formControlName="name"
@@ -32,7 +32,15 @@
     </div>
     <div class="d-flex flex-row justify-content-between align-items-baseline">
       <button type="button" class="btn btn-primary mx-2 h-25 btn-block" routerLink="/home">Já tenho conta</button>
-      <button type="submit" class="btn btn-success h-25 btn-block" [disabled]="!formulario.valid">Cadastrar</button>  
+      <button type="submit" class="btn btn-success h-25 btn-block" [disabled]="!formulario.valid">Cadastrar</button>
+    </div>
+    <div class="alert alert-danger my-2" role="alert" *ngIf="errorMessage">
+      <div class="error-message">
+        <span class="error-icon">
+          <i class="fas fa-circle"></i>
+        </span>
+        {{ errorMessage }}
+      </div>
     </div>
   </form>
 </div>
