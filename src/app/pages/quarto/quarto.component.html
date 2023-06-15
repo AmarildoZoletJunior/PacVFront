@@ -45,7 +45,7 @@
     </div>
   </div>
   <div class="col-6 m-2">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    <button type="button" class="btn btn-primary" (click)="carregarDatas()" data-bs-toggle="modal" data-bs-target="#exampleModal"
       data-bs-whatever="@mdo">Alugar quarto</button>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -54,21 +54,33 @@
             <h5 class="modal-title" id="exampleModalLabel">Aqui você pode selecionar quantos dias deseja ficar.</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
+          <div class="alert alert-danger" role="alert" *ngIf="ErroData == true">
+            Você selecionou um intervalo de datas que contém uma data que não está disponível no meio ou não selecionou nada. Selecione novamente seu intervalo de datas
+          </div>
           <div class="modal-body">
             <form>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                <input type="text" class="form-control" id="recipient-name">
-              </div>
-              <div class="mb-3">
-                <label for="message-text" class="col-form-label">Message:</label>
-                <textarea class="form-control" id="message-text"></textarea>
+              <div class="container">
+                <div class="row">
+                  <div class="col-12 col-xxl-10 col-xl-10 col-lg-10 col-sm-10 col-md-10 form-group">
+                    <input type="text"
+                          placeholder="Selecione o intervalo de datas para sua reserva"
+                          class="form-control"
+                          [class.is-invalid] = "ErroData == true"
+                          [(bsValue)]="startDate"
+                          (bsValueChange)="onDateChange()"
+                          bsDaterangepicker
+                          [minDate]="Today"
+                          [datesDisabled]="listaDatas"
+                          [bsConfig]="{ rangeInputFormat: 'DD/MM/YYYY' }"
+                          >
+                  </div>
+                </div>
               </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Send message</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="button" (click)="enviarParaPagamento()" [attr.data-bs-dismiss]="dataValida ? null : 'modal'" class="btn btn-primary">Seguir para alugar</button>
           </div>
         </div>
       </div>
@@ -83,25 +95,4 @@
   </div>
 </ng-template>
 
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-12 col-md-4 form-group">
-      <input type="text"
-            placeholder="Datepicker"
-            class="form-control"
-            bsDatepicker
-            [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
-            >
-    </div>
-    <div class="col-xs-12 col-12 col-md-4 form-group">
-      <input type="text"
-            placeholder="Daterangepicker"
-            class="form-control"
-            [(bsValue)]="startDate"
-            (bsValueChange)="onDateChange()"
-            bsDaterangepicker
-            [bsConfig]="{ rangeInputFormat: 'DD/MM/YYYY' }"
-            >
-    </div>
-  </div>
-</div>
+
