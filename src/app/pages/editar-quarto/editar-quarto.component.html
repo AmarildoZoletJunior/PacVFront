@@ -16,10 +16,10 @@
     <div class="input-group mb-3">
       <input type="text" class="form-control mr-1" (change)="ModificarPropriedade()" placeholder="Andar" id="Andar"
         name="Andar" formControlName="andar" aria-label="Andar"
-        [class.is-invalid]="formulario.controls['andar'].invalid && formulario.controls['andar'].touched" />
+        [class.is-invalid]="formulario.controls['andar'].invalid && formulario.controls['andar'].touched"/>
       <input type="text" class="form-control ml-1" (change)="ModificarPropriedade()" placeholder="Nome" id="Nome"
         name="Nome" formControlName="nome"
-        [class.is-invalid]="formulario.controls['nome'].invalid && formulario.controls['nome'].touched" />
+        [class.is-invalid]="formulario.controls['nome'].invalid && formulario.controls['nome'].touched"/>
     </div>
     <div class="input-group mb-3">
       <input type="text" class="form-control" (change)="ModificarPropriedade()" placeholder="Numero do quarto"

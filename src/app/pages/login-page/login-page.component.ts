@@ -69,10 +69,6 @@ export class LoginPageComponent implements OnInit {
         localStorage.setItem("idUser", String(x.clientId));
       }, (error) => {
         if (error instanceof HttpErrorResponse) {    
-          console.log('entrou')   
-          console.log(error.error) 
-          console.log(Array.isArray(error.error))
-          console.log(error.error.length)
           if (error.error && Array.isArray(error.error) && error.error.length > 0) {
             for (let i = 0; i < error.error.length; i++) {
               const element = error.error[i];
@@ -92,7 +88,4 @@ export class LoginPageComponent implements OnInit {
       })
     }
   }
-      }
-        )}
-      }
 }

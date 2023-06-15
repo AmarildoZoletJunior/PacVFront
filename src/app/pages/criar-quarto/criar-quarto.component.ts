@@ -1,4 +1,4 @@
-import { HttpStatusCode } from '@angular/common/http';
+import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RoomService } from 'src/app/services/Services/Room/Servico/room.service';
@@ -9,6 +9,7 @@ import { RoomService } from 'src/app/services/Services/Room/Servico/room.service
   styleUrls: ['./criar-quarto.component.css'],
 })
 export class CriarQuartoComponent implements OnInit {
+  mensagemErro: string = '';
   ImagemPrincipalNome: string = '';
   DemaisImagensNome: string = '';
   formulario!: FormGroup;
@@ -83,12 +84,27 @@ export class CriarQuartoComponent implements OnInit {
                  this.formulario.reset()
               },
               (error) => {
+                if(error instanceof HttpErrorResponse){
+                  if (error.error && Array.isArray(error.error) && error.error.length > 0) {
+                    for (let i = 0; i < error.error.length; i++) {
+                      const element = error.error[i];
+                      this.mensagemErro += `ERRO: ${element.title}:  ${element.message}\n`;
+                    }
+                  }
+                }
                 console.log("erro imagem principal de quarto");
               }
             );
         },
         (error) => {
-          console.log(error);
+          if(error instanceof HttpErrorResponse){
+            if (error.error && Array.isArray(error.error) && error.error.length > 0) {
+              for (let i = 0; i < error.error.length; i++) {
+                const element = error.error[i];
+                this.mensagemErro += `ERRO: ${element.title}:  ${element.message}\n`;
+              }
+            }
+          }
         }
       );
     }
