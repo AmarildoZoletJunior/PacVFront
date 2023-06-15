@@ -15,12 +15,13 @@ import { AuthService } from 'src/app/services/Services/Auth/Service/auth.service
 })
 export class LoginPageComponent implements OnInit {
 
-  maxAttempts = 5;
-  attemptCount = 0;
-  isBlocked = false;
-  private countdownSubscription: Subscription | undefined;
-  countdownSeconds = 30;
-  showBlockedMessage = false;
+  errorMessage: string = ''
+  maxTentativas = 5;
+  tentativas = 0;
+  bloqueado = false;
+  private assinaturaContagemRegressiva: Subscription | undefined;
+  contagemRegressiva = 30;
+  mensagemBloqueado = false;
 
   formulario!: FormGroup;
 
@@ -33,49 +34,64 @@ export class LoginPageComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
-  startCountdown() {
-    this.countdownSubscription = interval(1000)
-      .pipe(take(this.countdownSeconds))
+  iniciarContagem() {
+    this.assinaturaContagemRegressiva = interval(1000)
+      .pipe(take(this.contagemRegressiva))
       .subscribe({
         next: () => {
-          this.countdownSeconds--;
+          this.contagemRegressiva--;
         },
         complete: () => {
-          this.resetCountdown();
+          this.resetarContagem();
         },
       });
   }
 
-  resetCountdown() {
-    this.attemptCount = 0;
-    this.isBlocked = false;
-    this.countdownSeconds = 30;
-    this.showBlockedMessage = false;
-    if (this.countdownSubscription) {
-      this.countdownSubscription.unsubscribe();
+  resetarContagem() {
+    this.tentativas = 0;
+    this.bloqueado = false;
+    this.contagemRegressiva = 30;
+    this.mensagemBloqueado = false;
+    if (this.assinaturaContagemRegressiva) {
+      this.assinaturaContagemRegressiva.unsubscribe();
     }
   }
 
   enviarDados() {
-    if (this.isBlocked) {
-      this.showBlockedMessage = true;
+    if (this.bloqueado) {
+      this.mensagemBloqueado = true;
       return;
     }
     if (this.formulario.valid) {
+      this.errorMessage = ''
       this.authService.AuthClient(this.formulario.value).subscribe(x => {
         localStorage.setItem("keyToken", x.token);
         localStorage.setItem("idUser", String(x.clientId));
       }, (error) => {
-        if (error instanceof HttpErrorResponse) {
+        if (error instanceof HttpErrorResponse) {    
+          console.log('entrou')   
+          console.log(error.error) 
+          console.log(Array.isArray(error.error))
+          console.log(error.error.length)
+          if (error.error && Array.isArray(error.error) && error.error.length > 0) {
+            for (let i = 0; i < error.error.length; i++) {
+              const element = error.error[i];
+              this.errorMessage += `ERRO: ${element.title}:  ${element.message}\n`;
+            }
+          }
           if (error.status == 401) {
             this.formulario.setValue({ email: this.formulario.value['email'], password: '' })
-            this.attemptCount++;
-            if (this.attemptCount >= this.maxAttempts) {
-              this.isBlocked = true;
-              this.startCountdown();
+            this.tentativas++;
+            this.errorMessage = "Usuario ou Senha invalidos !"
+            if (this.tentativas >= this.maxTentativas) {
+              this.bloqueado = true;
+              this.iniciarContagem();
             }
           }
         }
+      })
+    }
+  }
       }
         )}
       }
