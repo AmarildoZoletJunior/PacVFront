@@ -17,7 +17,7 @@ import { PagamentoComponent } from './pages/pagamento/pagamento.component';
 import { SobreComponent } from './pages/sobre/sobre.component';
 import { ReservaInformacaoComponent } from './pages/reserva-informacao/reserva-informacao.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { GuardaTestGuard } from './guardas/guarda-test.guard';
+import { AuthService } from './services/Services/Auth/Service/auth.service';
 
 const routes: Routes = [
   {path:'signin', component:SigninPageComponent},
@@ -27,15 +27,16 @@ const routes: Routes = [
   {path:'login',component:LoginPageComponent},
   {path:'acomodacoes',component:AcomodacoesComponent},
   {path:'quarto/:id', component:QuartoComponent},
-  {path:'administrador',component:MenuAdministradorListaComponent},
-  {path:'editar/quarto/:id',component:EditarQuartoComponent},
-  {path:'criar',component:CriarQuartoComponent},
-  {path:'editar/usuario/:id',component:InformacaoUsuarioComponent},
-  {path:'reservas',component:ListaReservasComponent},
-  {path:'pagamento',component:PagamentoComponent},
+  {path:'administrador',component:MenuAdministradorListaComponent,canActivate:[AuthService]},
+  {path:'editar/quarto/:id',component:EditarQuartoComponent,canActivate:[AuthService]},
+  {path:'criar',component:CriarQuartoComponent,canActivate:[AuthService]},
+  {path:'editar/usuario',component:InformacaoUsuarioComponent,canActivate:[AuthService]},
+  {path:'reservas',component:ListaReservasComponent,canActivate:[AuthService]},
+  {path:'pagamento',component:PagamentoComponent,canActivate:[AuthService]},
   {path:'sobre',component:SobreComponent},
-  {path:'reserva/:id',component:ReservaInformacaoComponent},
+  {path:'reserva/:id',component:ReservaInformacaoComponent,canActivate:[AuthService]},
   {path:'homepage',component:HomePageComponent},
+  {path:'reservas',component:ListaReservasComponent},
   {path:'**',component:HomePageComponent}
 ];
 

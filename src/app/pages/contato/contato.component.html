@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="container-fluid d-flex flex-column p-0 m-0">
     <div class="col-12 p-0 m-0 mb-5">
         <img class="img-fluid" src="https://th.bing.com/th/id/R.2d5ab504020f0f21714f3e9cb6327cca?rik=DHV3rKoZ3pmn7w&pid=ImgRaw" alt="">
@@ -40,6 +41,7 @@
         <div class="col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-sm-12 text-center m-2">
           <h1>Está com dúvida?</h1>
           <p>Deixe neste formulário seu contato, entraremos em contato com você em breve.</p>
+          <form [formGroup]="formulario">
           <div class="input-group mb-3">
             <input type="text" class="form-control mr-1" name="nome" id="nome" formControlName="nome" placeholder="Nome" aria-label="Nome">
             <input type="text" class="form-control ml-1" placeholder="Telefone" formControlName="telefone" name="telefone" aria-label="Telefone">
@@ -52,8 +54,6 @@
             <textarea class="form-control" formControlName="descricao" id="descricao" name="descricao" placeholder="Digite sua mensagem aqui" aria-label="With textarea"></textarea>
           </div>
          <button class="btn btn-primary mt-3">Enviar</button>
+      </form>
         </div>
     </div>
-    
-   </div>
-   

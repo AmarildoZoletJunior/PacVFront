@@ -20,7 +20,7 @@ export class InformacaoUsuarioComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private client: ClientService) {}
   ngOnInit(): void {
-    this.idRoute = this.route.snapshot.paramMap.get('id');
+    this.idRoute = localStorage.getItem("idUser")
     console.log(this.idRoute);
     this.client.GetClientById(Number(this.idRoute)).subscribe((x) => {
       this.UserData = x;

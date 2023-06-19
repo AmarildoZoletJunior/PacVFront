@@ -1,7 +1,19 @@
-<div class="container-fluid p-2 d-flex flex-column border-bottom border-2"  style="background-color: #ffff">
-    <div class="col-6">
+<div class="container-fluid p-2 d-flex flex-column border-bottom border-2"   style="background-color: #ffff">
+    <div class="d-flex flex-row justify-content-between">
+    <div class="col-6" *ngIf="idUser == 0">
         <a routerLink="/login">Login</a>
         <a class="mx-5" routerLink="/signin">Registrar-se</a>
+    </div>
+    <div class="dropdown" *ngIf="idUser != 0">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Meu perfil
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" routerLink="/editar/usuario">Minhas informações</a></li>
+          <li><a class="dropdown-item" routerLink="/reservas">Minhas R(fazer ainda)</a></li>
+          <li><a class="dropdown-item" routerLink="/login">Sair</a></li>
+        </ul>
+      </div>
     </div>
     <div class="col-8 d-flex m-auto justify-content-xxl-around justify-content-xl-around justify-content-lg-around justify-content-md-center justify-content-sm-center align-items-baseline flex-wrap flex-row flex-xxl-row flex-xl-row flex-lg-row flex-md-row flex-sm-column">
     <div class="m-2">
@@ -15,7 +27,7 @@
         <a  routerLink="/sobre" class="h4">Sobre</a>
     </div>
     <div class="m-2">
-        <a  routerLink="" class="h4" routerLink="/contato">Contato</a>
+        <a class="h4" routerLink="/contato">Contato</a>
     </div>
 </div>
 </div>

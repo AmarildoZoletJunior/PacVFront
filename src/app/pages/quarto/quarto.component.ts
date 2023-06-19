@@ -23,7 +23,7 @@ export class QuartoComponent implements OnInit{
   Today:Date = new Date()
   ErroData:boolean = false
   dataValida:boolean = true
-
+  idUsuario!:number;
   selectedDate!: Date;
   datePickerConfig: Partial<BsDatepickerConfig>;
 
@@ -34,7 +34,8 @@ export class QuartoComponent implements OnInit{
     });
   }
   ngOnInit(): void {
-    this.Today.setDate(this.Today.getDate() + 7)
+    this.idUsuario = Number(localStorage.getItem("idUser")) || 0
+    this.Today.setDate(this.Today.getDate() + 9)
     this.idRoute = this.route.snapshot.paramMap.get("id")
     this.roomService.GetRoomByIdWithImage(Number(this.idRoute)).subscribe(x =>{
       this.room = x
@@ -60,12 +61,16 @@ export class QuartoComponent implements OnInit{
     this.ErroData = false
     for(let data of this.listaDatas)
     { 
-     if(format(new Date(data),'dd/MM/yyyy') >= format(new Date(this.startDate[0]), 'dd/MM/yyyy') && format(new Date(data),'dd/MM/yyyy') <= format(new Date(this.startDate[1]), 'dd/MM/yyyy'))
+      let dataAtual = new Date()
+      dataAtual.setDate(dataAtual.getDate() + 9)
+     if((new Date(data) >= new Date(this.startDate[0]) && new Date(data) <= new Date(this.startDate[1])) && dataAtual < new Date(this.startDate[0]) && dataAtual < new Date(this.startDate[1]))
      {
+      console.log("Caiu no true")
       setTimeout(() => {
-        this.ErroData = true
+        this.ErroData = false
         return
       }, 5000);
+      this.ErroData = true
       this.dataValida = true
       this.startDate = undefined
      }

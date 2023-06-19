@@ -25,4 +25,7 @@ export class AluguelService {
     console.log(room)
     return this.http.post<AluguelQuartoResponse>(this.baseUrl,room,this.httpOptions).pipe(resp => resp, error => error)
   }
+  public getBookingsForClientId(ClientId:number): Observable<Array<AluguelQuartoResponse>>{
+    return this.http.get<Array<AluguelQuartoResponse>>(`${this.baseUrl}client/${ClientId}`).pipe(resp => resp, error => error)
+  }
 }

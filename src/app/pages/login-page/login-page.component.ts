@@ -1,6 +1,7 @@
 import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { interval, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -32,7 +33,9 @@ export class LoginPageComponent implements OnInit {
     })
   }
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,private router:Router) { 
+    localStorage.clear()
+  }
 
   iniciarContagem() {
     this.assinaturaContagemRegressiva = interval(1000)
@@ -65,8 +68,12 @@ export class LoginPageComponent implements OnInit {
     if (this.formulario.valid) {
       this.errorMessage = ''
       this.authService.AuthClient(this.formulario.value).subscribe(x => {
+        this.authService.estaLogado = true
+        this.router.navigate(['/homepage'])
         localStorage.setItem("keyToken", x.token);
         localStorage.setItem("idUser", String(x.clientId));
+        localStorage.setItem("ClientName",String(x.clientName))
+
       }, (error) => {
         if (error instanceof HttpErrorResponse) {    
           console.log('entrou')   
@@ -93,6 +100,3 @@ export class LoginPageComponent implements OnInit {
     }
   }
       }
-        )}
-      }
-}

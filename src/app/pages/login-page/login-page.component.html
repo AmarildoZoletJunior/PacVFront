@@ -1,4 +1,13 @@
+<app-header></app-header>
 <div class="container-fluid col-8 col-xxl-4 col-xl-4 col-lg-4 col-md-8 col-sm-8 col-sm-8 mt-5 my-5">
+  <div class="alert alert-danger my-2" role="alert" *ngIf="errorMessage">
+    <div class="error-message">
+      <span class="error-icon">
+        <i class="fas fa-circle"></i>
+      </span>
+      {{ errorMessage }}
+    </div>
+  </div>
   <h2 class="text-center">Logue na sua conta</h2>
   <form [formGroup]="formulario" (ngSubmit)="enviarDados()">
     <div class="form-outline mb-4">
@@ -14,11 +23,6 @@
       <label class="form-label" for="form2Example2">Senha</label>
       <input type="password" id="password" name="password" formControlName="password" class="form-control"
         [class.is-invalid]="formulario.controls['password'].invalid && formulario.controls['password'].touched" />
-      <!-- <div class="invalid-feedback"
-        *ngIf="formulario.controls['password'].invalid && formulario.controls['password'].touched">
-        A senha deve conter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula e um caractere
-        especial.
-      </div> -->
     </div>
     <div class="d-flex flex-row justify-content-between align-items-baseline">
       <button type="button" class="btn btn-primary mx-2 h-25 btn-block">
@@ -28,14 +32,6 @@
     </div>
     <div class="alert alert-danger mt-3" *ngIf="mensagemBloqueado">
       Usuário bloqueado. Tente novamente em 30 segundos.
-    </div>
-    <div class="alert alert-danger my-2" role="alert" *ngIf="errorMessage">
-      <div class="error-message">
-        <span class="error-icon">
-          <i class="fas fa-circle"></i>
-        </span>
-        {{ errorMessage }}
-      </div>
     </div>
   </form>
 </div>

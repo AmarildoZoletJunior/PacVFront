@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div *ngIf="room != undefined; else loop"
   class="col-10 mx-auto d-flex flex-column justify-content-center align-items-center">
   <h1 class="text-center mt-5">{{room.name}}</h1>
@@ -45,8 +46,11 @@
     </div>
   </div>
   <div class="col-6 m-2">
-    <button type="button" class="btn btn-primary" (click)="carregarDatas()" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    <button type="button" *ngIf="idUsuario != 0; else logarConta" class="btn btn-primary" (click)="carregarDatas()" data-bs-toggle="modal" data-bs-target="#exampleModal"
       data-bs-whatever="@mdo">Alugar quarto</button>
+      <ng-template #logarConta>
+        <button class="btn btn-success"><a style="text-decoration: none; color:white" routerLink="/login">Conectar a minha conta para Alugar</a></button>
+      </ng-template>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">

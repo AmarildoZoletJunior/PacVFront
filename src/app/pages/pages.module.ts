@@ -19,6 +19,7 @@ import { PagamentoComponent } from './pagamento/pagamento.component';
 import { ReservaInformacaoComponent } from './reserva-informacao/reserva-informacao.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { SobreComponent } from './sobre/sobre.component';
 
 
 @NgModule({
@@ -39,7 +40,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     PagamentoComponent,
     ReservaInformacaoComponent,
     HomePageComponent,
-
+    SobreComponent
   ],
   imports: [
     CommonModule,
