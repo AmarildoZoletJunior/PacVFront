@@ -6,13 +6,15 @@ import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { MessageErrorComponent } from './message-error/message-error.component';
 import { Base64ToImagePipe } from './pipes/Base64ToImagePipe';
+import { HaederAdminComponent } from './haeder-admin/haeder-admin.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
     MessageErrorComponent,
-    Base64ToImagePipe
+    Base64ToImagePipe,
+    HaederAdminComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { Base64ToImagePipe } from './pipes/Base64ToImagePipe';
     HeaderComponent,
     FooterComponent,
     MessageErrorComponent,
-    Base64ToImagePipe
+    Base64ToImagePipe,
+    HaederAdminComponent
   ]
 })
 export class ComponentsModule { }
