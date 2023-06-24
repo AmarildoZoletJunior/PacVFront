@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { MessageErrorComponent } from './message-error/message-error.component';
 import { Base64ToImagePipe } from './pipes/Base64ToImagePipe';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { Base64ToImagePipe } from './pipes/Base64ToImagePipe';
     FooterComponent,
     MessageErrorComponent,
     Base64ToImagePipe
-  ]
+  ],
+  providers:[CookieService]
 })
 export class ComponentsModule { }

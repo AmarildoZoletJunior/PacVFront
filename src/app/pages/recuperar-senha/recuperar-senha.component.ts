@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { ClientService } from 'src/app/services/Services/Client/client.service';
 
 @Component({
@@ -34,7 +35,8 @@ export class RecuperarSenhaComponent implements OnInit{
     }
     return null
   }
-constructor(private clientService:ClientService,private router:Router){}
+constructor(private clientService:ClientService,private router:Router,
+  private cookieService: CookieService){}
   enviarDados(){
     this.errorMessage = ''
     const campo1Control = this.formulario.get('password')?.value;
@@ -48,7 +50,7 @@ console.log(campo1Control,campo2Control)
         {
           if (error instanceof HttpErrorResponse) {
             if(error.status == 401){
-              localStorage.clear()
+              this.cookieService.deleteAll()
               window.confirm("Infelizmente, ocorreu um erro de validação do seu usuário e você esta sendo redirecionado para a página de login.")
               this.router.navigate(['/login'])
               return

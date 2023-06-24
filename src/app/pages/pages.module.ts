@@ -20,6 +20,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { SobreComponent } from './sobre/sobre.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { LoginAdminComponent } from './login-admin/login-admin.component';
     ContatoComponent,
     RecuperarSenhaComponent,
     LoginPageComponent
-  ]
+  ],
+  providers: [CookieService]
 })
 export class PagesModule { }

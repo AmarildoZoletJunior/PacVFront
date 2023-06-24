@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { format } from 'date-fns';
+import { CookieService } from 'ngx-cookie-service';
 import { AluguelQuartoRequest } from 'src/app/services/Interfaces/AluguelQuartoRequest';
 import { RoomResponse } from 'src/app/services/Interfaces/room-response';
 import { AluguelService } from 'src/app/services/Services/Aluguel/aluguel.service';
@@ -20,14 +21,15 @@ export class PagamentoComponent implements OnInit {
   informacaoService!: Array<any>;
   quarto!: RoomResponse;
 
-  getClientId = localStorage.getItem('idUser');
+  getClientId = this.cookieService.get('idUser');
 
   constructor(
     private aluguelService: AluguelService,
     private roomService: RoomService,
     private PaymentService: PagamentoService,
     private informacao: CompartilharService,
-    private rota: Router
+    private rota: Router,
+    private cookieService: CookieService
   ) {}
   ngOnInit(): void {
     this.informacaoService = this.informacao.enviarInformacao();
@@ -85,10 +87,11 @@ export class PagamentoComponent implements OnInit {
           (error) => {
             if(error  instanceof HttpErrorResponse){
               if(error.status == 401){
-                localStorage.clear();
+                this.cookieService.deleteAll()
                 window.confirm(
-                  'Infelizmente, ocorreu um erro de validação do seu usuário e você esta sendo redirecionado para a página de login.'
+                  'Ocorreu um erro de validação do seu usuário e você esta sendo redirecionado para a página de login.'
                 );
+                console.log("Aqui caiu")
                 this.rota.navigate(['/login']);
               }
               //Fazer o tratamento de erro com o retorno da api
