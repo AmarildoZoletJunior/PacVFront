@@ -4,7 +4,6 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SigninPageComponent } from './pages/signin-page/signin-page.component';
 import { RecuperarSenhaComponent } from './pages/recuperar-senha/recuperar-senha.component';
 import { ContatoComponent } from './pages/contato/contato.component';
-import { AreaDoClienteComponent } from './pages/area-do-cliente/area-do-cliente.component';
 import { AcomodacoesComponent } from './pages/acomodacoes/acomodacoes.component';
 import { MessageErrorComponent } from './components/message-error/message-error.component';
 import { QuartoComponent } from './pages/quarto/quarto.component';
@@ -17,24 +16,25 @@ import { PagamentoComponent } from './pages/pagamento/pagamento.component';
 import { SobreComponent } from './pages/sobre/sobre.component';
 import { ReservaInformacaoComponent } from './pages/reserva-informacao/reserva-informacao.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { GuardaTestGuard } from './guardas/guarda-test.guard';
+import { AuthService } from './services/Services/Auth/Service/auth.service';
+import { LoginAdminComponent } from './pages/login-admin/login-admin.component';
 
 const routes: Routes = [
   {path:'signin', component:SigninPageComponent},
   {path:'recuperacao', component:RecuperarSenhaComponent},
   {path:'contato', component:ContatoComponent},
-  {path:'areacliente', component:AreaDoClienteComponent},
+  {path:'login/administracao',component:LoginAdminComponent},
   {path:'login',component:LoginPageComponent},
   {path:'acomodacoes',component:AcomodacoesComponent},
   {path:'quarto/:id', component:QuartoComponent},
   {path:'administrador',component:MenuAdministradorListaComponent},
   {path:'editar/quarto/:id',component:EditarQuartoComponent},
   {path:'criar',component:CriarQuartoComponent},
-  {path:'editar/usuario/:id',component:InformacaoUsuarioComponent},
-  {path:'reservas',component:ListaReservasComponent},
-  {path:'pagamento',component:PagamentoComponent},
+  {path:'editar/usuario',component:InformacaoUsuarioComponent,canActivate:[AuthService]},
+  {path:'reservas',component:ListaReservasComponent,canActivate:[AuthService]},
+  {path:'pagamento',component:PagamentoComponent,canActivate:[AuthService]},
   {path:'sobre',component:SobreComponent},
-  {path:'reserva/:id',component:ReservaInformacaoComponent},
+  {path:'reserva/:id',component:ReservaInformacaoComponent,canActivate:[AuthService]},
   {path:'homepage',component:HomePageComponent},
   {path:'**',component:HomePageComponent}
 ];

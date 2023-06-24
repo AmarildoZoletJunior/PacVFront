@@ -60,10 +60,9 @@ export class EditarQuartoComponent implements OnInit {
       description: this.formulario.get('descricao')?.value,
       number: this.formulario.get('numero')?.value,
     };
-    console.log(roomDataResponse)
-    console.log(this.RoomDataAntigo)
+    console.log(this.ImagemPrincipal.length)
 
-    if (roomDataResponse.description == this.RoomDataAntigo.description && roomDataResponse.level == this.RoomDataAntigo.level && roomDataResponse.name == this.RoomDataAntigo.name && roomDataResponse.number == this.RoomDataAntigo.number) {
+    if (roomDataResponse.description == this.RoomDataAntigo.description && roomDataResponse.level == this.RoomDataAntigo.level && roomDataResponse.name == this.RoomDataAntigo.name && roomDataResponse.number == this.RoomDataAntigo.number && this.ImagemPrincipal.length == 0) {
       return false;
     }
     return true;

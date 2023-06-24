@@ -5,7 +5,6 @@ import { ComponentsModule } from '../components/components.module';
 import { SigninPageComponent } from './signin-page/signin-page.component';
 import { ContatoComponent } from './contato/contato.component';
 import { RecuperarSenhaComponent } from './recuperar-senha/recuperar-senha.component';
-import { AreaDoClienteComponent } from './area-do-cliente/area-do-cliente.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { AcomodacoesComponent } from './acomodacoes/acomodacoes.component';
@@ -19,6 +18,8 @@ import { PagamentoComponent } from './pagamento/pagamento.component';
 import { ReservaInformacaoComponent } from './reserva-informacao/reserva-informacao.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { SobreComponent } from './sobre/sobre.component';
+import { LoginAdminComponent } from './login-admin/login-admin.component';
 
 
 @NgModule({
@@ -28,7 +29,6 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     ContatoComponent,
     RecuperarSenhaComponent,
     LoginPageComponent,
-    AreaDoClienteComponent,
     AcomodacoesComponent,
     QuartoComponent,
     MenuAdministradorListaComponent,
@@ -39,7 +39,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     PagamentoComponent,
     ReservaInformacaoComponent,
     HomePageComponent,
-
+    SobreComponent,
+    LoginAdminComponent
   ],
   imports: [
     CommonModule,
@@ -54,8 +55,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     SigninPageComponent,
     ContatoComponent,
     RecuperarSenhaComponent,
-    LoginPageComponent,
-    AreaDoClienteComponent
+    LoginPageComponent
   ]
 })
 export class PagesModule { }

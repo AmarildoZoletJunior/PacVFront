@@ -1,6 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClienteRequestInfo } from 'src/app/services/Interfaces/client-request-Info';
 import { ClientResponse } from 'src/app/services/Interfaces/client-response';
 import { ClientService } from 'src/app/services/Services/Client/client.service';
@@ -18,9 +19,9 @@ export class InformacaoUsuarioComponent implements OnInit {
   nomeAntigo!: string;
   sobrenomeAntigo!: string;
 
-  constructor(private route: ActivatedRoute, private client: ClientService) {}
+  constructor(private route: ActivatedRoute,private rota:Router, private client: ClientService) {}
   ngOnInit(): void {
-    this.idRoute = this.route.snapshot.paramMap.get('id');
+    this.idRoute = localStorage.getItem("idUser")
     console.log(this.idRoute);
     this.client.GetClientById(Number(this.idRoute)).subscribe((x) => {
       this.UserData = x;
@@ -36,6 +37,17 @@ export class InformacaoUsuarioComponent implements OnInit {
           Validators.minLength(3),
         ]),
       });
+    },(error)=>{
+      if(error  instanceof HttpErrorResponse){
+        if(error.status == 401){
+          localStorage.clear();
+          window.confirm(
+            'Infelizmente, ocorreu um erro de validação do seu usuário e você esta sendo redirecionado para a página de login.'
+          );
+          this.rota.navigate(['/login']);
+        }
+        //Fazer o tratamento de erro com o retorno da api
+      }
     });
   }
   enviarDados() {

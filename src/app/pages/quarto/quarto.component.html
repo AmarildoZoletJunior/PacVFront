@@ -1,30 +1,18 @@
+<app-header></app-header>
 <div *ngIf="room != undefined; else loop"
   class="col-10 mx-auto d-flex flex-column justify-content-center align-items-center">
   <h1 class="text-center mt-5">{{room.name}}</h1>
   <div
     class="col-12 p-0 mt-5 d-flex flex-column flex-xxl-row flex-xl-row flex-lg-row flex-md-column flex-sm-column justify-content-center align-items-xxl-start align-items-xl-start align-items-lg-start align-items-md-center align-items-sm-center align-items-center">
-    <div class="col-12 mb-2 col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-sm-6 carrossel">
-      <div id="carouselExampleIndicators" class="carousel slide">
+    <div class="col-12 mb-2 col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-sm-6">
+      <div id="carouselExampleIndicators" class="carousel slide"  data-bs-ride="carousel">
         <div *ngIf="room.images.length > 0; else semimagem">
-          <div class="carousel-inner" *ngFor="let roomUnit of room.images; let ok = index">
-            <div class="carousel-item active" *ngIf="ok == 0; else other_content">
+          <div class="carousel-inner carroselTeste" >
+            <div class="carousel-item" *ngFor="let roomUnit of room.images; let index = index;let isFirst = first" [ngClass]="{active:isFirst}">
               <img [src]="roomUnit.imageBase | base64ToImage" class="d-block mx-auto w-100 img-fluid imageCard"
                 alt="...">
             </div>
-            <ng-template #other_content>
-              <div class="carousel-item">
-                <img [src]="roomUnit.imageBase | base64ToImage" class="d-block mx-auto w-100 img-fluid imageCard"
-                  alt="...">
-              </div>
-            </ng-template>
           </div>
-        </div>
-        <ng-template #semimagem>
-          <div class="carousel-item active">
-            <img src="../../../assets/sem-foto.jpg" alt="sem imagem" class="d-block mx-auto w-100 img-fluid imageCard">
-          </div>
-        </ng-template>
-
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
           data-bs-slide="prev">
           <span class="carousel-control-prev-icon bg-primary" aria-hidden="true"></span>
@@ -37,6 +25,12 @@
         </button>
       </div>
     </div>
+    <ng-template #semimagem>
+      <div class="carousel-item active">
+        <img src="../../../assets/sem-foto.jpg" alt="sem imagem" class="d-block mx-auto w-100 img-fluid imageCard">
+      </div>
+    </ng-template>
+    </div>
     <div class="col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-sm-6">
       <div class="col-8 mx-auto">
         <h1 class="text-center">Descrição do quarto</h1>
@@ -45,8 +39,11 @@
     </div>
   </div>
   <div class="col-6 m-2">
-    <button type="button" class="btn btn-primary" (click)="carregarDatas()" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    <button type="button" *ngIf="idUsuario != 0; else logarConta" class="btn btn-primary" (click)="carregarDatas()" data-bs-toggle="modal" data-bs-target="#exampleModal"
       data-bs-whatever="@mdo">Alugar quarto</button>
+      <ng-template #logarConta>
+        <button class="btn btn-success"><a style="text-decoration: none; color:white" routerLink="/login">Conectar a minha conta para Alugar</a></button>
+      </ng-template>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -96,3 +93,36 @@
 </ng-template>
 
 
+<!-- <div id="carouselExampleIndicators" class="carousel slide"  data-bs-ride="carousel">
+  <div *ngIf="room.images.length > 0; else semimagem">
+    <div class="carousel-inner carroselTeste" *ngFor="let roomUnit of room.images; let index = index">
+      <div class="carousel-item active" *ngIf="index == 0; else other_content">
+        <img [src]="roomUnit.imageBase | base64ToImage" [ngClass]="index === 0 ? 'active' : 'd-none'" class="d-block mx-auto w-100 img-fluid imageCard"
+          alt="...">
+      </div>
+      <ng-template #other_content>
+        <div class="carousel-item active">
+          <img [src]="roomUnit.imageBase | base64ToImage"  [ngClass]="index != 0 ? 'active' : 'd-none'" class="d-block mx-auto w-100 img-fluid imageCard"
+            alt="...">
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <ng-template #semimagem>
+    <div class="carousel-item active">
+      <img src="../../../assets/sem-foto.jpg" alt="sem imagem" class="d-block mx-auto w-100 img-fluid imageCard">
+    </div>
+  </ng-template>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+    data-bs-slide="prev">
+    <span class="carousel-control-prev-icon bg-primary" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+    data-bs-slide="next">
+    <span class="carousel-control-next-icon bg-primary" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</div> -->

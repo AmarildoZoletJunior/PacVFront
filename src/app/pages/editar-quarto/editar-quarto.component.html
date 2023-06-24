@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div *ngIf="formulario != null; else loading" class="col-8 mx-auto my-5">
   <form [formGroup]="formulario" #meuFormulario="ngForm">
     <div
@@ -8,7 +9,7 @@
           <div class="custom-file">
             <input type="file" id="image" (change)="ArquivoImagemPrincipalNome($event)"
               (change)="ModificarPropriedade()" class="custom-file-input">
-            <label class="custom-file-label" for="image">{{ ImagemPrincipal }}</label>
+            <label class="custom-file-label fileImage" for="image">{{ ImagemPrincipal }}</label>
           </div>
         </div>
       </div>
@@ -30,7 +31,9 @@
       <textarea type="text" class="form-control" (change)="ModificarPropriedade()" placeholder="Descrição do quarto"
         id="Descricao" name="Descricao" formControlName="descricao" aria-label="Descricao"></textarea>
     </div>
+
     <div class="d-flex col-6 mx-auto flex-row justify-content-between align-items-baseline">
+      <button type="button" class="btn btn-danger h-25 m-0 btn-block my-5"  routerLink="/administrador">Voltar</button>
       <button type="button" *ngIf="ModificarPropriedade() == true" class="btn btn-success h-25 m-0 btn-block"
         [disabled]="!formulario.valid">Salvar
         alterações</button>

@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ClientService } from 'src/app/services/Services/Client/client.service';
 
 
@@ -9,11 +10,16 @@ import { ClientService } from 'src/app/services/Services/Client/client.service';
   templateUrl: './signin-page.component.html',
   styleUrls: ['./signin-page.component.css']
 })
-export class SigninPageComponent {
+export class SigninPageComponent implements OnInit{
   errorMessage: string = ''
   formulario!: FormGroup;
 
   ngOnInit(): void {
+    let resultadoId = localStorage.getItem("idUser") || 0
+    if(resultadoId != 0)
+    {
+      this.router.navigate(['/homepage'])
+    }
     this.formulario = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(2)]),
       surname: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -41,7 +47,7 @@ export class SigninPageComponent {
     return null
   }
 
-  constructor(private ClienteService: ClientService) { }
+  constructor(private ClienteService: ClientService,private router:Router) { }
 
 
   enviarDados() {
@@ -50,8 +56,15 @@ export class SigninPageComponent {
       this.ClienteService.CreateClient(this.formulario.value).subscribe(x => {
         this.errorMessage = ''
         console.log(x)
+        this.router.navigate(['/login'])
       }, (error) => {
         if (error instanceof HttpErrorResponse) {
+          if(error.status == 401)
+          {
+            localStorage.clear()
+            window.confirm("Infelizmente, ocorreu um erro de validação do seu usuário e você esta sendo redirecionado para a página de login.")
+            this.router.navigate(['/login'])
+          }
           if (error.error && Array.isArray(error.error) && error.error.length > 0) {
             for (let i = 0; i < error.error.length; i++) {
               const element = error.error[i];

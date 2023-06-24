@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="col-8 mx-auto my-5">
   <form [formGroup]="formulario" (ngSubmit)="enviarDados()">
     <div
@@ -8,9 +9,9 @@
           <div class="custom-file">
             <input type="file" id="image" (change)="ArquivoImagemPrincipalNome($event)"
               (change)="selecionarImagemPrincipal($event)" name="imagemprincipal" formControlName="imagemprincipal"
-              id="imagemprincipal" class="custom-file-input"
+              id="imagemprincipal" class="custom-file-input fileImage"
               [class.is-invalid]="formulario.controls['imagemprincipal'].invalid && formulario.controls['imagemprincipal'].touched" />
-            <label class="custom-file-label" for="image">{{ ImagemPrincipalNome }}</label>
+            <label class="custom-file-label fileImage" for="image">{{ ImagemPrincipalNome }}</label>
           </div>
         </div>
       </div>
@@ -19,9 +20,9 @@
           <label for="image">Demais imagens</label>
           <div class="custom-file">
             <input type="file" id="image" name="imagensquarto" formControlName="imagensquarto" id="imagensquarto"
-              (change)="ArquivoImagensSecundarias($event)" class="custom-file-input" multiple
+              (change)="ArquivoImagensSecundarias($event)" class="custom-file-input " multiple
               [class.is-invalid]="formulario.controls['imagensquarto'].invalid && formulario.controls['imagensquarto'].touched" />
-            <label class="custom-file-label" for="image">{{ DemaisImagensNome }}</label>
+            <label class="custom-file-label fileImage" for="image">{{ DemaisImagensNome }}</label>
           </div>
         </div>
       </div>
