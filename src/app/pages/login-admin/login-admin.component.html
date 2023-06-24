@@ -1,0 +1,33 @@
+<div class="container-fluid col-8 col-xxl-4 col-xl-4 col-lg-4 col-md-8 col-sm-8 col-sm-8 mt-5 my-5">
+    <div class="alert alert-danger my-2" role="alert" *ngIf="errorMessage">
+      <div class="error-message">
+        <span class="error-icon">
+          <i class="fas fa-circle"></i>
+        </span>
+        {{ errorMessage }}
+      </div>
+    </div>
+    <h2 class="text-center">Painel de administração</h2>
+    <form [formGroup]="formulario" (ngSubmit)="enviarDados()">
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example1">Email</label>
+        <input type="email" id="email" name="email" formControlName="email" class="form-control"
+          [class.is-invalid]="formulario.controls['email'].invalid && formulario.controls['email'].touched" />
+        <div class="invalid-feedback"
+          *ngIf="formulario.controls['email'].invalid && formulario.controls['email'].touched">
+          Por favor, insira um email válido.
+        </div>
+      </div>
+      <div class="form-outline mb-4">
+        <label class="form-label" for="form2Example2">Senha</label>
+        <input type="password" id="password" name="password" formControlName="password" class="form-control"
+          [class.is-invalid]="formulario.controls['password'].invalid && formulario.controls['password'].touched" />
+      </div>
+      <div class="d-flex flex-row justify-content-between align-items-baseline">
+        <button type="submit" class="btn btn-success h-25 btn-block" [disabled]="!formulario.valid">Entrar</button>
+      </div>
+      <div class="alert alert-danger mt-3" *ngIf="mensagemBloqueado">
+        Usuário bloqueado. Tente novamente em 30 segundos.
+      </div>
+    </form>
+  </div>

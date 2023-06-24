@@ -1,21 +1,16 @@
-import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
-import { interval, Subscription } from 'rxjs';
-import { take } from 'rxjs/operators';
-
+import { Subscription, interval, take } from 'rxjs';
 import { AuthService } from 'src/app/services/Services/Auth/Service/auth.service';
 
-
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  selector: 'app-login-admin',
+  templateUrl: './login-admin.component.html',
+  styleUrls: ['./login-admin.component.css']
 })
-export class LoginPageComponent implements OnInit {
-
+export class LoginAdminComponent {
   errorMessage: string = ''
   maxTentativas = 5;
   tentativas = 0;
@@ -74,13 +69,8 @@ export class LoginPageComponent implements OnInit {
         localStorage.setItem("keyToken", x.token);
         localStorage.setItem("idUser", String(x.clientId));
         localStorage.setItem("ClientName",String(x.clientName))
-
       }, (error) => {
         if (error instanceof HttpErrorResponse) {    
-          console.log('entrou')   
-          console.log(error.error) 
-          console.log(Array.isArray(error.error))
-          console.log(error.error.length)
           if (error.error && Array.isArray(error.error) && error.error.length > 0) {
             for (let i = 0; i < error.error.length; i++) {
               const element = error.error[i];
@@ -100,4 +90,4 @@ export class LoginPageComponent implements OnInit {
       })
     }
   }
-      }
+}

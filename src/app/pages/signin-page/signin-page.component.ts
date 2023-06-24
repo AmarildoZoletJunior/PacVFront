@@ -61,7 +61,9 @@ export class SigninPageComponent implements OnInit{
         if (error instanceof HttpErrorResponse) {
           if(error.status == 401)
           {
-
+            localStorage.clear()
+            window.confirm("Infelizmente, ocorreu um erro de validação do seu usuário e você esta sendo redirecionado para a página de login.")
+            this.router.navigate(['/login'])
           }
           if (error.error && Array.isArray(error.error) && error.error.length > 0) {
             for (let i = 0; i < error.error.length; i++) {

@@ -1,21 +1,28 @@
 <app-header></app-header>
-<div class="col-md-8 mx-auto my-2">
+<div *ngIf="AluguelResponse != null; else Carregamento" class="col-md-8 mx-auto my-2">
     <div class="card flex-md-row mb-4 shadow-sm h-md-250">
         <div class="card-body d-flex flex-column align-items-start">
             <h3 class="mb-0">
-                <a class="text-dark">Quarto tal tal tal taltal</a>
+                <a class="text-dark">{{AluguelResponse.room.name}}</a>
             </h3>
             <div class="mb-1 text-muted"></div>
             <div class="card-text mb-auto">
-                <p>Data inicial:</p>
-                <p>Data final:</p>
-                <p><strong>Forma de pagamento:</strong>cartão</p>
+                <p>Data inicial: {{AluguelResponse.start}}</p>
+                <p>Data final: {{AluguelResponse.end}}</p>
+                <p><strong>Forma de pagamento:</strong>Cartão de credito</p>
                 <p><strong>Status de pagamento:</strong>Pago</p>
             </div>
         </div>
         <img class="card-img-right flex-auto d-none d-lg-block img-fluid img-thumbnail"
             data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" style="width: 200px; height: 250px;"
-            src="https://imagens-revista.vivadecora.com.br/uploads/2021/03/1-decora%C3%A7%C3%A3o-moderna-para-quarto-feminino-pequeno-cinza-com-m%C3%B3veis-planejados-Foto-Sua-Decora%C3%A7%C3%A3o.jpg"
+            [src]="AluguelResponse.room.images[0].imageBase | base64ToImage"
             data-holder-rendered="true">
     </div>
 </div>
+<ng-template #Carregamento>
+    <div class="col-12 m-auto d-flex align-items-center justify-content-center h-100 w-100">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+</ng-template>

@@ -16,6 +16,7 @@ export class ListaReservasComponent implements OnInit{
 constructor(private AluguelService:AluguelService,private route:Router){}
   ngOnInit(): void {
     this.idUsuario = Number(localStorage.getItem("idUser")) || 0
+    console.log("Teste")
     this.AluguelService.getBookingsForClientId(this.idUsuario).subscribe(x =>{
       x.forEach(aluguel =>{
         let teste = new Date(aluguel.start.split("T")[0])
@@ -26,10 +27,7 @@ constructor(private AluguelService:AluguelService,private route:Router){}
       
     },(error)=>{
       if(error instanceof HttpErrorResponse){
-        if(error.status == 401){
-          window.confirm("Ocorreu um erro na validação do seu usuário, estamos te redirecionando para a página de login")
-          this.route.navigate(['/login'])
-        }
+
       }
     })
   }

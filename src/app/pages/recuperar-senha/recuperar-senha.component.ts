@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ClientService } from 'src/app/services/Services/Client/client.service';
 
 @Component({
@@ -33,7 +34,7 @@ export class RecuperarSenhaComponent implements OnInit{
     }
     return null
   }
-constructor(private clientService:ClientService){}
+constructor(private clientService:ClientService,private router:Router){}
   enviarDados(){
     this.errorMessage = ''
     const campo1Control = this.formulario.get('password')?.value;
@@ -46,6 +47,12 @@ console.log(campo1Control,campo2Control)
         },(error)=>
         {
           if (error instanceof HttpErrorResponse) {
+            if(error.status == 401){
+              localStorage.clear()
+              window.confirm("Infelizmente, ocorreu um erro de validação do seu usuário e você esta sendo redirecionado para a página de login.")
+              this.router.navigate(['/login'])
+              return
+            }
             if (error.error && Array.isArray(error.error) && error.error.length > 0) {
               for (let i = 0; i < error.error.length; i++) {
                 const element = error.error[i];

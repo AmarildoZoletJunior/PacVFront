@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AreaDoClienteComponent } from './area-do-cliente.component';
+import { LoginAdminComponent } from './login-admin.component';
 
-describe('AreaDoClienteComponent', () => {
-  let component: AreaDoClienteComponent;
-  let fixture: ComponentFixture<AreaDoClienteComponent>;
+describe('LoginAdminComponent', () => {
+  let component: LoginAdminComponent;
+  let fixture: ComponentFixture<LoginAdminComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AreaDoClienteComponent ]
+      declarations: [ LoginAdminComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AreaDoClienteComponent);
+    fixture = TestBed.createComponent(LoginAdminComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

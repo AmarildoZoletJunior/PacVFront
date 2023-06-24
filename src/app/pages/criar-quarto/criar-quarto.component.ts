@@ -1,6 +1,7 @@
 import { HttpStatusCode } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RoomService } from 'src/app/services/Services/Room/Servico/room.service';
 
 @Component({
@@ -59,7 +60,7 @@ export class CriarQuartoComponent implements OnInit {
     }
   }
 
-  constructor(private roomService: RoomService) {}
+  constructor(private roomService: RoomService,private router:Router) {}
 
   enviarDados() {
     if (this.formulario.valid) {
@@ -83,12 +84,13 @@ export class CriarQuartoComponent implements OnInit {
                  this.formulario.reset()
               },
               (error) => {
-                console.log("erro imagem principal de quarto");
+                this.router.navigate(['/administrador'])
+                window.confirm("Erro ao criar a imagem, precisamos que você refaça o processo de atribuir imagem")
               }
             );
         },
         (error) => {
-          console.log(error);
+          window.confirm("Erro ao criar o quarto, precisamos que você refaça o processo inteiro.")
         }
       );
     }

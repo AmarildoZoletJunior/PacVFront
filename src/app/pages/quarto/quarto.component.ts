@@ -39,15 +39,18 @@ export class QuartoComponent implements OnInit{
     this.idRoute = this.route.snapshot.paramMap.get("id")
     this.roomService.GetRoomByIdWithImage(Number(this.idRoute)).subscribe(x =>{
       this.room = x
+      console.log(x.images)
     },(error)=>{
       this.navegacao.navigate(['/acomodacoes'])
     })
   }
 
   carregarDatas(){
-    this.aluguel.listDates(1).subscribe(datas =>
+    this.aluguel.listDates(Number(this.route.snapshot.paramMap.get('id'))).subscribe(datas =>
       {
+        console.log("caiu aqui")
         datas.forEach(x =>{
+          console.log(x)
           var dataAtual = new Date(x.split("T")[0]);
           dataAtual.setDate(dataAtual.getDate() + 1)
           this.listaDatas.push(dataAtual)
