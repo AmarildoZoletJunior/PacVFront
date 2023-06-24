@@ -23,6 +23,11 @@
       <label class="form-label" for="form2Example2">Senha</label>
       <input type="password" id="password" name="password" formControlName="password" class="form-control"
         [class.is-invalid]="formulario.controls['password'].invalid && formulario.controls['password'].touched" />
+      <div class="invalid-feedback"
+        *ngIf="formulario.controls['password'].invalid && formulario.controls['password'].touched">
+        A senha deve conter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula e um caractere
+        especial.
+      </div> 
     </div>
     <div class="d-flex flex-row justify-content-between align-items-baseline">
       <button type="button" class="btn btn-primary mx-2 h-25 btn-block">
