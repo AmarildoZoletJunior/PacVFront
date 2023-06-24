@@ -8,6 +8,7 @@ import { AluguelService } from 'src/app/services/Services/Aluguel/aluguel.servic
 import { DatePipe } from '@angular/common';
 import { CompartilharService } from 'src/app/services/Services/CompartilharInformacao/compartilhar.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-quarto',
@@ -27,14 +28,15 @@ export class QuartoComponent implements OnInit{
   selectedDate!: Date;
   datePickerConfig: Partial<BsDatepickerConfig>;
 
-  constructor(private navegacao:Router,private roomService:RoomService,private route:ActivatedRoute,private aluguel:AluguelService,private compartilharInformacao:CompartilharService) {
+  constructor(
+    private cookieService: CookieService,private navegacao:Router,private roomService:RoomService,private route:ActivatedRoute,private aluguel:AluguelService,private compartilharInformacao:CompartilharService) {
     this.datePickerConfig = Object.assign({}, {
       containerClass: 'theme-default',
       showWeekNumbers: false
     });
   }
   ngOnInit(): void {
-    this.idUsuario = Number(localStorage.getItem("idUser")) || 0
+    this.idUsuario = Number(this.cookieService.get("idUser")) || 0
     this.Today.setDate(this.Today.getDate() + 9)
     this.idRoute = this.route.snapshot.paramMap.get("id")
     this.roomService.GetRoomByIdWithImage(Number(this.idRoute)).subscribe(x =>{

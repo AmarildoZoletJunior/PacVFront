@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { RoomResponseWithImage } from 'src/app/services/Interfaces/room-with-images';
 import { RoomService } from 'src/app/services/Services/Room/Servico/room.service';
 
@@ -9,10 +10,10 @@ import { RoomService } from 'src/app/services/Services/Room/Servico/room.service
 })
 export class AcomodacoesComponent implements OnInit {
   ListRooms!:Array<RoomResponseWithImage>
-constructor(private roomService:RoomService){}
+constructor(private roomService:RoomService,
+  private cookieService: CookieService){}
   ngOnInit(): void {
     this.roomService.GetRoomsAvailable().subscribe(x => this.ListRooms = x);
-    localStorage.setItem("add","olateste")
   }
 
   transform(base64: string): string {

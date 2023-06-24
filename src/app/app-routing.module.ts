@@ -18,6 +18,7 @@ import { ReservaInformacaoComponent } from './pages/reserva-informacao/reserva-i
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { AuthService } from './services/Services/Auth/Service/auth.service';
 import { LoginAdminComponent } from './pages/login-admin/login-admin.component';
+import { AuthAdminService } from './services/Services/AuthAdmin/auth-admin.service';
 
 const routes: Routes = [
   {path:'signin', component:SigninPageComponent},
@@ -27,9 +28,9 @@ const routes: Routes = [
   {path:'login',component:LoginPageComponent},
   {path:'acomodacoes',component:AcomodacoesComponent},
   {path:'quarto/:id', component:QuartoComponent},
-  {path:'administrador',component:MenuAdministradorListaComponent},
-  {path:'editar/quarto/:id',component:EditarQuartoComponent},
-  {path:'criar',component:CriarQuartoComponent},
+  {path:'administrador',component:MenuAdministradorListaComponent,canActivate:[AuthAdminService]},
+  {path:'editar/quarto/:id',component:EditarQuartoComponent,canActivate:[AuthAdminService]},
+  {path:'criar',component:CriarQuartoComponent,canActivate:[AuthAdminService]},
   {path:'editar/usuario',component:InformacaoUsuarioComponent,canActivate:[AuthService]},
   {path:'reservas',component:ListaReservasComponent,canActivate:[AuthService]},
   {path:'pagamento',component:PagamentoComponent,canActivate:[AuthService]},

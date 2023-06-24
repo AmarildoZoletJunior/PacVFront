@@ -1,28 +1,16 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { authResponse } from '../../Interfaces/authResponse';
+import { authRequest } from '../../Interfaces/authRequest';
 import { Observable, map } from 'rxjs';
-import { authRequest } from '../../../Interfaces/authRequest';
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-  HttpResponse,
-  HttpResponseBase,
-  HttpStatusCode,
-} from '@angular/common/http';
-import { authResponse } from 'src/app/services/Interfaces/authResponse';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  RouterStateSnapshot,
-  UrlTree,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
+
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class AuthService implements CanActivate {
+export class AuthAdminService {
   baseUrl: string = 'https://localhost:7253/Auth';
   estaLogado: boolean = false;
   public httpOptions = {
@@ -50,7 +38,6 @@ export class AuthService implements CanActivate {
         (error) => error
       );
   }
-
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -80,7 +67,7 @@ export class AuthService implements CanActivate {
         if(this.estaLogado == false){
         this.cookieService.deleteAll()
         window.confirm("Infelizmente ocorreu um erro de validação do seu usuário e você esta sendo redirecionado para a página de login.")
-        this.router.navigate(['/login'])
+        this.router.navigate(['/login/administracao'])
         return false
       }
       return true
