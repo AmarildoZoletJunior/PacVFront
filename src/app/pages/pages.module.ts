@@ -20,6 +20,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { SobreComponent } from './sobre/sobre.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
+import { TermoConsentimentoComponent } from './termo-consentimento/termo-consentimento.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { LoginAdminComponent } from './login-admin/login-admin.component';
     ReservaInformacaoComponent,
     HomePageComponent,
     SobreComponent,
-    LoginAdminComponent
+    LoginAdminComponent,
+    TermoConsentimentoComponent
   ],
   imports: [
     CommonModule,
@@ -55,7 +57,8 @@ import { LoginAdminComponent } from './login-admin/login-admin.component';
     SigninPageComponent,
     ContatoComponent,
     RecuperarSenhaComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    TermoConsentimentoComponent
   ]
 })
 export class PagesModule { }
