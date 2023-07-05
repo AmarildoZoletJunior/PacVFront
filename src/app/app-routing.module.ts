@@ -18,6 +18,7 @@ import { ReservaInformacaoComponent } from './pages/reserva-informacao/reserva-i
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { AuthService } from './services/Services/Auth/Service/auth.service';
 import { LoginAdminComponent } from './pages/login-admin/login-admin.component';
+import { TermoConsentimentoComponent } from './pages/termo-consentimento/termo-consentimento.component';
 import { AuthAdminService } from './services/Services/AuthAdmin/auth-admin.service';
 import { ReservarSemPagamentoComponent } from './pages/reservar-sem-pagamento/reservar-sem-pagamento.component';
 
@@ -38,6 +39,7 @@ const routes: Routes = [
   {path:'sobre',component:SobreComponent},
   {path:'reserva/:id',component:ReservaInformacaoComponent,canActivate:[AuthService]},
   {path:'homepage',component:HomePageComponent},
+  {path:'termo',component:TermoConsentimentoComponent},
   {path:'editar/senha',component:RecuperarSenhaComponent},
   {path:'administrador/reserva',component:ReservarSemPagamentoComponent},
   {path:'**',component:HomePageComponent}
