@@ -4,29 +4,39 @@
   <div class="col-12 col-xxl-8 col-xl-8 col-lg-12 col-md-12 col-sm-12 mx-auto my-5">
     <form [formGroup]="formulario" (ngSubmit)="enviarDados()">
       <div class="input-group mb-3">
-        <input type="number" class="form-control mr-1" placeholder="Numero do cartão" id="numeroCartao"
+        <input type="text" class="form-control" placeholder="Numero do cartão" id="numeroCartao"
           name="numeroCartao" formControlName="numeroCartao" aria-label="numeroCartao"
-          [class.is-invalid]="formulario.controls['numeroCartao'].invalid && formulario.controls['numeroCartao'].touched" />
+          [class.is-invalid]="formulario.controls['numeroCartao'].invalid && formulario.controls['numeroCartao'].touched" 
+          pattern="^[0-9]+$" [minlength]="16" [maxlength]="16"/>
+      </div>
+      <div *ngIf="formulario.controls['numeroCartao'].invalid && formulario.controls['numeroCartao'].touched" class="text-danger">
+        O número do cartão deve conter apenas dígitos numéricos e conter 16 digitos
       </div>
       <div class="input-group mb-3">
-        <input type="number" class="form-control mr-1" placeholder="Código de segurança" id="codigoSeguranca"
+        <input type="text" class="form-control" placeholder="Código de segurança" id="codigoSeguranca"
           name="codigo" formControlName="codigo" aria-label="numeroCartao"
-          [class.is-invalid]="formulario.controls['codigo'].invalid && formulario.controls['codigo'].touched" />
-        <input type="text" class="form-control ml-1" placeholder="Nome do titular" id="Nome" name="Nome"
+          [class.is-invalid]="formulario.controls['codigo'].invalid && formulario.controls['codigo'].touched"
+          [maxlength]="3" [minlength]="3" pattern="^[0-9]+$"/>
+        <input type="text" class="form-control" placeholder="Nome do titular" id="Nome" name="Nome"
           formControlName="Nome"
           [class.is-invalid]="formulario.controls['Nome'].invalid && formulario.controls['Nome'].touched" />
       </div>
+      <div *ngIf="formulario.controls['codigo'].invalid && formulario.controls['codigo'].touched" class="text-danger">
+        O codigo deve conter apenas dígitos numéricos e conter 3 digitos
+      </div>
       <div class="input-group mb-3">
-        <input type="number" class="form-control mr-1" placeholder="CPF" id="CPF" name="CPF" formControlName="CPF"
+        <input type="text" class="form-control" placeholder="CPF" id="CPF" name="CPF" formControlName="CPF"
           aria-label="CPF"
-          [class.is-invalid]="formulario.controls['CPF'].invalid && formulario.controls['CPF'].touched" />
-        <input type="text" disabled class="form-control ml-1" placeholder="Numero do quarto: {{quarto.number}}" id="Numero do quarto"
+          [class.is-invalid]="formulario.controls['CPF'].invalid && formulario.controls['CPF'].touched" 
+          [maxlength]="11" [minlength]="11" pattern="^[0-9]+$"/>
+        <input type="text" disabled class="form-control" placeholder="Numero do quarto: {{quarto.number}}" id="Numero do quarto"
           name="Numero do quarto" aria-label="Numero do quarto">
       </div>
-      <div class="d-flex col-8 mx-auto flex-row justify-content-between align-items-baseline">
-        <button type="submit" class="btn btn-success h-25 m-0 btn-block" [disabled]="!formulario.valid"> Realizar reserva</button>
+      <div *ngIf="formulario.controls['CPF'].invalid && formulario.controls['CPF'].touched" class="text-danger">
+        O CPF deve conter apenas dígitos numéricos e conter 11 digitos
       </div>
     </form>
+    
   </div>
   <div class="card mx-auto my-5 col-12 col-xxl-4 col-xl-4 col-lg-12 col-md-12 col-sm-12" style="width: 18rem;">
     <div class="card-body">

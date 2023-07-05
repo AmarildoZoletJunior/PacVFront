@@ -47,17 +47,20 @@ export class PagamentoComponent implements OnInit {
         Validators.required,
         Validators.pattern('^[0-9]+$'),
         Validators.minLength(16),
+        Validators.maxLength(16),
       ]),
       codigo: new FormControl('', [
         Validators.required,
         Validators.pattern('^[0-9]+$'),
         Validators.minLength(3),
+        Validators.maxLength(3),
       ]),
       Nome: new FormControl('', [Validators.required]),
       CPF: new FormControl('', [
         Validators.required,
         Validators.pattern('^[0-9]+$'),
         Validators.minLength(11),
+        Validators.maxLength(11),
       ]),
     });
   }
