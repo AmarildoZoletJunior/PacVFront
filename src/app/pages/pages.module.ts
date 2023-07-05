@@ -20,6 +20,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { SobreComponent } from './sobre/sobre.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
+import { TermoConsentimentoComponent } from './termo-consentimento/termo-consentimento.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ListaReservasAdminComponent } from './lista-reservas-admin/lista-reservas-admin.component';
 
@@ -43,7 +44,13 @@ import { ListaReservasAdminComponent } from './lista-reservas-admin/lista-reserv
     HomePageComponent,
     SobreComponent,
     LoginAdminComponent,
+<<<<<<< HEAD
     ListaReservasAdminComponent
+=======
+    TermoConsentimentoComponent
+    ListaReservasAdminComponent,
+    ReservarSemPagamentoComponent
+>>>>>>> 2fe13ff2753af8023d72a37b3ba4bb86eeb7045f
   ],
   imports: [
     CommonModule,
@@ -58,6 +65,9 @@ import { ListaReservasAdminComponent } from './lista-reservas-admin/lista-reserv
     SigninPageComponent,
     ContatoComponent,
     RecuperarSenhaComponent,
+    LoginPageComponent,
+    TermoConsentimentoComponent
+  ]
     LoginPageComponent
   ],
   providers: [CookieService,DatePipe]

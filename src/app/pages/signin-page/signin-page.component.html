@@ -12,29 +12,33 @@
     </div>
 
     <div class="d-flex justify-content-between">
-      <div *ngIf="formulario.controls['name'].invalid && formulario.controls['name'].touched" class="alert alert-danger form-group mr-2">
+      <div *ngIf="formulario.controls['name'].invalid && formulario.controls['name'].touched"
+        class="alert alert-danger form-group mr-2">
         Insira um nome válido.
       </div>
-      <div *ngIf="formulario.controls['surname'].invalid && formulario.controls['surname'].touched" class="alert alert-danger form-group mr-2">
+      <div *ngIf="formulario.controls['surname'].invalid && formulario.controls['surname'].touched"
+        class="alert alert-danger form-group mr-2">
         Insira um sobrenome válido.
-      </div>  
+      </div>
     </div>
 
-    
+
     <div class="input-group mb-3">
       <input type="text" class="form-control mr-1" placeholder="Telefone" id="telefone" name="telefone"
         formControlName="phone" aria-label="telefone"
         [class.is-invalid]="formulario.controls['phone'].invalid && formulario.controls['phone'].touched">
       <input type="text" class="form-control ml-1" placeholder="CPF" id="cpf" name="cpf"
         formControlName="documentNumber" aria-label="cpf"
-        [class.is-invalid]="formulario.controls['documentNumber'].invalid && formulario.controls['documentNumber'].touched">  
+        [class.is-invalid]="formulario.controls['documentNumber'].invalid && formulario.controls['documentNumber'].touched">
     </div>
 
     <div class="d-flex justify-content-between">
-      <div *ngIf="formulario.controls['phone'].invalid && formulario.controls['phone'].touched" class="alert alert-danger form-group mr-2">
+      <div *ngIf="formulario.controls['phone'].invalid && formulario.controls['phone'].touched"
+        class="alert alert-danger form-group mr-2">
         Insira um telefone válido.
       </div>
-      <div *ngIf="formulario.controls['documentNumber'].invalid && formulario.controls['documentNumber'].touched" class="alert alert-danger form-group mr-2">
+      <div *ngIf="formulario.controls['documentNumber'].invalid && formulario.controls['documentNumber'].touched"
+        class="alert alert-danger form-group mr-2">
         Insira um CPF válido.
       </div>
     </div>
@@ -43,7 +47,8 @@
       <input type="text" class="form-control mr-1" placeholder="Email" id="email" name="email" formControlName="email"
         aria-label="email"
         [class.is-invalid]="formulario.controls['email'].invalid && formulario.controls['email'].touched">
-      <div *ngIf="formulario.controls['email'].invalid && formulario.controls['email'].touched" class="alert alert-danger form-group mr-2">
+      <div *ngIf="formulario.controls['email'].invalid && formulario.controls['email'].touched"
+        class="alert alert-danger form-group mr-2">
         Insira um email válido.
       </div>
     </div>
@@ -55,12 +60,26 @@
         formControlName="confirmarsenha" name="confirmarsenha" aria-label="confirmarsenha"
         [class.is-invalid]="formulario.controls['password'].invalid && formulario.controls['password'].touched">
     </div>
-    <div *ngIf="formulario.controls['password'].invalid && formulario.controls['password'].touched" class="alert alert-danger form-group mr-2">
+    <div *ngIf="formulario.controls['password'].invalid && formulario.controls['password'].touched"
+      class="alert alert-danger form-group mr-2">
       As senhas não coincidem.
     </div>
+    <div *ngIf="formulario.valid" class="form-check">
+      <input class="form-check-input" type="checkbox" id="termoCheck" formControlName="termoCheck"
+        [class.is-invalid]="formulario.controls['termoCheck'].value && formulario.controls['termoCheck'].invalid && formulario.controls['termoCheck'].touched">
+        <label class="form-check-label" for="termoCheck">
+          Eu li e concordo com o
+          <a [routerLink]="['/termo', { nome: formulario.value.name, cpf: formulario.value.documentNumber }]"
+            target="_self"
+          >Termo de Consentimento da LGPD</a>
+        </label>
+    </div>
+    <div *ngIf="formulario.controls['termoCheck'].value && formulario.controls['termoCheck'].invalid && formulario.controls['termoCheck'].touched" class="alert alert-danger form-group mr-2">
+      É necessário concordar com o Termo de Consentimento da LGPD.
+    </div>    
     <div class="d-flex flex-row justify-content-between align-items-baseline">
       <button type="button" class="btn btn-primary mx-2 h-25 btn-block" routerLink="/login">Já tenho conta</button>
-      <button type="submit" class="btn btn-success h-25 btn-block" [disabled]="!formulario.valid">Cadastrar</button>
+      <button type="submit" class="btn btn-success h-25 btn-block" [disabled]="!formulario.controls['termoCheck'].value || !formulario.valid">Cadastrar</button>
     </div>
     <div class="alert alert-danger my-2" role="alert" *ngIf="errorMessage">
       <div class="error-message">

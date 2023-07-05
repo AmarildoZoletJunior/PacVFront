@@ -28,7 +28,9 @@ export class SigninPageComponent implements OnInit{
       documentNumber: new FormControl('', [Validators.required, Validators.pattern("[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}"), Validators.maxLength(14)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.pattern("^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*()_+])[A-Za-z0-9!@#$%^&*()_+]{8,}$")]),
-      confirmarsenha: new FormControl('', [Validators.required])
+      termoCheck: new FormControl(false, Validators.required),
+      confirmarsenha: new FormControl('', [Validators.required]),
+       
     }),
     {
       validators: this.compararSenhas
