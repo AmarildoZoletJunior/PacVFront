@@ -53,8 +53,7 @@
       </div>
     </div>
     <div class="d-flex flex-row justify-content-between align-items-baseline">
-      <button type="button" class="btn btn-warning mx-2 h-25 btn-block"><a routerLink="/signin"
-          style="text-decoration: none; color:white">Mudar senha</a></button>
+      <button type="button" routerLink="/editar/senha" class="btn btn-warning mx-2 h-25 btn-block">Mudar senha</button>
       <button type="submit" *ngIf="MudarValor()" class="btn btn-success h-25 btn-block">Salvar mudanças</button>
     </div>
   </form>

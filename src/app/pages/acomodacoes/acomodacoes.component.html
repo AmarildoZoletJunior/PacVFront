@@ -5,8 +5,8 @@
       <p class="lead my-3 col-md-6 text-start mx-auto text-muted">Nossos quartos foram criados para atender às suas necessidades e superar as suas expectativas. Com uma combinação de estilo e conforto, cada espaço foi cuidadosamente decorado para oferecer uma atmosfera acolhedora e relaxante.</p>
   </div>
 </div>
-<div class="col-12 d-flex flex-wrap flex-row flex-xxl-row flex-xl-row flex-lg-row flex-md-column flex-sm-column flex-wrap justify-content-center align-items-center">
-<div class="col-12 col-xxl-4 col-xl-4 col-lg-4 col-md-8 col-sm-8 col-sm-8 mb-5" *ngFor="let room of ListRooms">
+<div *ngIf="ExisteRooms == true; else NaoEncontrado" class="col-12 d-flex flex-wrap flex-row flex-xxl-row flex-xl-row flex-lg-row flex-md-column flex-sm-column flex-wrap justify-content-center align-items-center">
+<div  class="col-12 col-xxl-4 col-xl-4 col-lg-4 col-md-8 col-sm-8 col-sm-8 mb-5" *ngFor="let room of ListRooms">
 <a routerLink="/quarto/{{room.id}}" class="">
 <div class="card mt-5 mb-3 col-12 mx-auto cartao">
   <img *ngIf="room.images.length > 0;else imagemvazia " class="imageCard img-fluid w-100" [src]="room.images[0].imageBase | base64ToImage" />
@@ -23,3 +23,6 @@
   </a>
 </div>
 </div>
+<ng-template #NaoEncontrado>
+ <h1 class="text-center">Nenhum quarto foi encontrado</h1>
+</ng-template>

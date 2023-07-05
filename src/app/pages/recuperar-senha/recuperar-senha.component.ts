@@ -43,9 +43,10 @@ constructor(private clientService:ClientService,private router:Router,
     const campo2Control = this.formulario.get('confirmPassword')?.value;
 console.log(campo1Control,campo2Control)
     if(this.formulario.valid){
-      this.clientService.ModifyPassword({"id":1,"password":this.formulario.get('password')?.value}).subscribe(x => 
+      this.clientService.ModifyPassword({"id":Number(this.cookieService.get("idUser")),"password":this.formulario.get('password')?.value}).subscribe(x => 
         {
-          console.log(x)
+          window.confirm("Sua senha foi alterada com sucesso.")
+          this.router.navigate(['/editar/usuario'])
         },(error)=>
         {
           if (error instanceof HttpErrorResponse) {

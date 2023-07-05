@@ -28,7 +28,7 @@ export class EditarQuartoComponent implements OnInit {
       this.formulario = new FormGroup({
         andar: new FormControl(this.RoomData ? this.RoomData.level : '', [
           Validators.required,
-          Validators.minLength(3),
+          Validators.minLength(1),
         ]),
         nome: new FormControl(this.RoomData ? this.RoomData.name : '', [
           Validators.required,
@@ -40,7 +40,7 @@ export class EditarQuartoComponent implements OnInit {
         ),
         numero: new FormControl(this.RoomData ? this.RoomData.number : '', [
           Validators.required,
-          Validators.minLength(3),
+          Validators.minLength(1),
         ]),
       });
     });

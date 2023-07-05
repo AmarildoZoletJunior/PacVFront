@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ComponentsModule } from '../components/components.module';
 import { SigninPageComponent } from './signin-page/signin-page.component';
@@ -21,6 +21,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { SobreComponent } from './sobre/sobre.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { CookieService } from 'ngx-cookie-service';
+import { ListaReservasAdminComponent } from './lista-reservas-admin/lista-reservas-admin.component';
+import { ReservarSemPagamentoComponent } from './reservar-sem-pagamento/reservar-sem-pagamento.component';
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import { CookieService } from 'ngx-cookie-service';
     ReservaInformacaoComponent,
     HomePageComponent,
     SobreComponent,
-    LoginAdminComponent
+    LoginAdminComponent,
+    ListaReservasAdminComponent,
+    ReservarSemPagamentoComponent
   ],
   imports: [
     CommonModule,
@@ -58,6 +62,6 @@ import { CookieService } from 'ngx-cookie-service';
     RecuperarSenhaComponent,
     LoginPageComponent
   ],
-  providers: [CookieService]
+  providers: [CookieService,DatePipe]
 })
 export class PagesModule { }

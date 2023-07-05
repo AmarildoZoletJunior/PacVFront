@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { authResponse } from '../../Interfaces/authResponse';
 import { authRequest } from '../../Interfaces/authRequest';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -27,10 +27,10 @@ export class AuthAdminService {
         (error) => error
       );
   }
-  public VerifyToken(token: string): Observable<string> {
+  public VerifyToken(token: string): Observable<boolean> {
     return this.http
-      .get<string>(
-        `https://localhost:7253/Validate?token=${token}`,
+      .get<boolean>(
+        `https://localhost:7253/Validate/Admin?token=${token}`,
         this.httpOptions
       )
       .pipe(
@@ -47,31 +47,38 @@ export class AuthAdminService {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ):
-    | boolean
-    | UrlTree
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree> {
+  ): | boolean
+  | UrlTree
+  | Observable<boolean | UrlTree>
+  | Promise<boolean | UrlTree> {
     return this.VerifyToken(this.cookieService.get('keyToken') || 'teste').pipe(
       map((x) => {
-        if (x != '') {
-          if (x == this.cookieService.get('idUser')) {
-            this.estaLogado = true;
-            console.log('1');
-            return true;
-          }
-          window.confirm('2');
+        if (!x) {
           this.estaLogado = false;
+          this.router.navigate(['/homepage']);
           return false;
         }
-        if(this.estaLogado == false){
-        this.cookieService.deleteAll()
-        window.confirm("Infelizmente ocorreu um erro de validação do seu usuário e você esta sendo redirecionado para a página de login.")
-        this.router.navigate(['/login/administracao'])
-        return false
-      }
-      return true
+        this.estaLogado = true;
+        if (!this.estaLogado) {
+          window.confirm("Infelizmente ocorreu um erro de validação do seu usuário e você está sendo redirecionado para a página de login.");
+          this.router.navigate(['/homepage']);
+          return false;
+        }
+        return true;
+      }),
+      catchError((error) => {
+        if (error.status === 401) {
+          window.confirm("Infelizmente ocorreu um erro de validação do seu usuário e você está sendo redirecionado para a página de login.");
+          this.router.navigate(['/login/administracao']);
+          return of(false);
+        } 
+        else {
+          window.confirm("Infelizmente ocorreu um erro de validação do seu usuário e você está sendo redirecionado para a página de login.");
+          this.router.navigate(['/login/administracao']);
+          return of(false);
+        }
       })
     );
   }
+  
 }

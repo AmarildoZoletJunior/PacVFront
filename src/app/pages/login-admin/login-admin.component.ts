@@ -23,6 +23,7 @@ export class LoginAdminComponent {
   formulario!: FormGroup;
 
   ngOnInit(): void {
+    this.cookieService.deleteAll();
     this.formulario = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
@@ -39,7 +40,7 @@ export class LoginAdminComponent {
     private router: Router,
     private cookieService: CookieService
   ) {
-    localStorage.clear();
+    this.cookieService.deleteAll();
   }
 
   iniciarContagem() {

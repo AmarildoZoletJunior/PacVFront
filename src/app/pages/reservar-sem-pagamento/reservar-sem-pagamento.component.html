@@ -1,0 +1,48 @@
+<app-header></app-header>
+<div class="col-6 m-2">
+    <button type="button" *ngIf="idUsuario != 0; else logarConta" class="btn btn-primary" (click)="carregarDatas()" data-bs-toggle="modal" data-bs-target="#exampleModal"
+      data-bs-whatever="@mdo">Alugar quarto</button>
+      <ng-template #logarConta>
+        <button class="btn btn-success"><a style="text-decoration: none; color:white" routerLink="/login">Conectar a minha conta para Alugar</a></button>
+      </ng-template>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Aqui você pode selecionar quantos dias deseja ficar.</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="ErroData == true">
+            Você selecionou um intervalo de datas que contém uma data que não está disponível no meio ou não selecionou nada. Selecione novamente seu intervalo de datas
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="container">
+                <div class="row">
+                  <div class="col-12 col-xxl-10 col-xl-10 col-lg-10 col-sm-10 col-md-10 form-group">
+                    <input type="text"
+                          placeholder="Selecione o intervalo de datas para sua reserva"
+                          class="form-control"
+                          [class.is-invalid] = "ErroData == true"
+                          [(bsValue)]="startDate"
+                          (bsValueChange)="onDateChange()"
+                          bsDaterangepicker
+                          [minDate]="Today"
+                          [datesDisabled]="listaDatas"
+                          [bsConfig]="{ rangeInputFormat: 'DD/MM/YYYY' }"
+                          >
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+        
+    </div>
+  </div>

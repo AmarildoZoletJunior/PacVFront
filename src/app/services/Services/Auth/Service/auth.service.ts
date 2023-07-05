@@ -70,10 +70,8 @@ export class AuthService implements CanActivate {
         if (x != '') {
           if (x == this.cookieService.get('idUser')) {
             this.estaLogado = true;
-            console.log('1');
             return true;
           }
-          window.confirm('2');
           this.estaLogado = false;
           return false;
         }

@@ -61,7 +61,8 @@ export class InformacaoUsuarioComponent implements OnInit {
         "surname":this.formulario.get('sobrenome')?.value,
       }
       this.client.ModifyInfo(ClienteModificado).subscribe((x) => {
-        console.log('Passou');
+        window.confirm("Você alterou com sucesso suas informações.")
+        window.location.reload();
       });
     }
   }
