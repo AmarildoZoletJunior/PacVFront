@@ -17,6 +17,7 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root',
@@ -50,7 +51,11 @@ export class AuthService implements CanActivate {
       );
   }
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private cookieService: CookieService
+  ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -60,33 +65,24 @@ export class AuthService implements CanActivate {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-    let code;
-    this.VerifyToken(localStorage.getItem('keyToken') || 'teste').subscribe(
-      (x) => {
+    return this.VerifyToken(this.cookieService.get('keyToken') || 'teste').pipe(
+      map((x) => {
         if (x != '') {
-          if (x == localStorage.getItem('idUser')) {
+          if (x == this.cookieService.get('idUser')) {
             this.estaLogado = true;
-            console.log("1")
-            return
+            return true;
           }
-          console.log("2")
           this.estaLogado = false;
-          return
+          return false;
         }
-        console.log("3")
-        this.estaLogado = false;
-        return
-      },(error)=>{
-        console.log("4")
-        this.estaLogado = false; 
+        if(this.estaLogado == false){
+        this.cookieService.deleteAll()
+        window.confirm("Infelizmente ocorreu um erro de validação do seu usuário e você esta sendo redirecionado para a página de login.")
+        this.router.navigate(['/login'])
+        return false
       }
+      return true
+      })
     );
-    if(this.estaLogado == false){
-      localStorage.clear()
-      window.confirm("Infelizmente, ocorreu um erro de validação do seu usuário e você esta sendo redirecionado para a página de login.")
-      this.router.navigate(['/login'])
-      return false
-    }
-    return true
   }
 }

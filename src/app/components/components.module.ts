@@ -7,6 +7,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { MessageErrorComponent } from './message-error/message-error.component';
 import { Base64ToImagePipe } from './pipes/Base64ToImagePipe';
 import { HaederAdminComponent } from './haeder-admin/haeder-admin.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { HaederAdminComponent } from './haeder-admin/haeder-admin.component';
     MessageErrorComponent,
     Base64ToImagePipe,
     HaederAdminComponent
-  ]
+  ],
+  providers:[CookieService]
 })
 export class ComponentsModule { }

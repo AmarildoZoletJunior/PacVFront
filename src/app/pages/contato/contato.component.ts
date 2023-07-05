@@ -22,4 +22,10 @@ export class ContatoComponent implements OnInit{
   openModal() {
     this.showModal = true;
   }
+
+  EnviarDados(){
+    window.confirm("Obrigado pelo contato, em breve te retornaremos.")
+  }
+
+  
 }

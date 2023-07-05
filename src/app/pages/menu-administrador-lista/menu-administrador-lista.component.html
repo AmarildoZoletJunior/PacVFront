@@ -11,12 +11,22 @@
             </div>
             <div class="col-4 justify-content-end d-flex flex-row">
                 <div>
-                    <button class="btn btn-danger" (click)="DeletarUsuario(room.id,room.name)">Excluir</button>
+                    <button class="btn btn-danger" (click)="DeletarQuarto(room.id,room.name)">Excluir</button>
                 </div>
                 <div>
-                    <a routerLink="/editar/quarto/{{room.id}}"><button
-                            class="btn btn-success ml-2">Editar</button></a>
+                    <button routerLink="/editar/quarto/{{room.id}}"
+                            class="btn btn-success ml-2">Editar</button>
                 </div>
+                <div *ngIf="room.available == true; else falseRoom">
+                    <button (click)="DesativarOuAtivarQuarto(room.id)"
+                            class="btn btn-warning ml-2">Desativar Quarto</button>
+                </div>
+                <ng-template #falseRoom>
+                    <div>
+                        <button (click)="DesativarOuAtivarQuarto(room.id)"
+                                class="btn btn-primary ml-2">Ativar Quarto</button>
+                    </div>
+                </ng-template>
             </div>
         </div>
         <ng-template #loop>

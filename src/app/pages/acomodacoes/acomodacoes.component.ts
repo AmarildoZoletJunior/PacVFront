@@ -1,4 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { RoomResponseWithImage } from 'src/app/services/Interfaces/room-with-images';
 import { RoomService } from 'src/app/services/Services/Room/Servico/room.service';
 
@@ -9,10 +11,18 @@ import { RoomService } from 'src/app/services/Services/Room/Servico/room.service
 })
 export class AcomodacoesComponent implements OnInit {
   ListRooms!:Array<RoomResponseWithImage>
-constructor(private roomService:RoomService){}
+  ExisteRooms!:boolean
+constructor(private roomService:RoomService,
+  private cookieService: CookieService){}
   ngOnInit(): void {
-    this.roomService.GetRoomsAvailable().subscribe(x => this.ListRooms = x);
-    localStorage.setItem("add","olateste")
+    this.roomService.GetRoomsAvailable().subscribe(x =>{
+      this.ListRooms = x
+      this.ExisteRooms = true
+      console.log(this.ListRooms.length)
+    },(error)=>{
+      this.ExisteRooms = false
+      console.log("error aqui")
+    } );
   }
 
   transform(base64: string): string {

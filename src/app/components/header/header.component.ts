@@ -1,4 +1,5 @@
 import { Component,OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -6,11 +7,16 @@ import { Component,OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit{
 
-  constructor(){
-    this.idUser = Number(localStorage.getItem("idUser")) || 0
+  constructor(
+    private cookieService: CookieService){
+    this.idUser = Number(this.cookieService.get("idUser")) || 0
   }
   idUser!:number
   ngOnInit(): void {
-    this.idUser = Number(localStorage.getItem("idUser")) || 0
+    this.idUser = Number(this.cookieService.get("idUser")) || 0
+  }
+
+  ResetarTudo(){
+    this.cookieService.deleteAll()
   }
 }

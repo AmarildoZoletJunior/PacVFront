@@ -2,6 +2,7 @@ import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 import { interval, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -27,14 +28,15 @@ export class LoginPageComponent implements OnInit {
   formulario!: FormGroup;
 
   ngOnInit(): void {
+    this.cookieService.deleteAll()
     this.formulario = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.pattern("^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*()_+])[A-Za-z0-9!@#$%^&*()_+]{8,}$")]),
     })
   }
-
-  constructor(private authService: AuthService,private router:Router) { 
-    localStorage.clear()
+  
+  constructor(private authService: AuthService,private router:Router,private cookieService: CookieService) { 
+    this.cookieService.deleteAll()
   }
 
   iniciarContagem() {
@@ -68,13 +70,12 @@ export class LoginPageComponent implements OnInit {
     if (this.formulario.valid) {
       this.errorMessage = ''
       this.authService.AuthClient(this.formulario.value).subscribe(x => {
+        this.cookieService.deleteAll()
+        this.cookieService.set("ClientName",String(x.clientName))
+        this.cookieService.set("idUser", String(x.clientId))
+        this.cookieService.set("keyToken", x.token)
         this.authService.estaLogado = true
         this.router.navigate(['/homepage'])
-        localStorage.clear()
-        localStorage.setItem("keyToken", x.token);
-        localStorage.setItem("idUser", String(x.clientId));
-        localStorage.setItem("ClientName",String(x.clientName))
-
       }, (error) => {
         if (error instanceof HttpErrorResponse) {    
           if (error.error && Array.isArray(error.error) && error.error.length > 0) {
@@ -97,4 +98,3 @@ export class LoginPageComponent implements OnInit {
     }
   }
 }
-

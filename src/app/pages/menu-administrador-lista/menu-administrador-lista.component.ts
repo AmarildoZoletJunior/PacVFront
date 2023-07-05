@@ -18,17 +18,27 @@ export class MenuAdministradorListaComponent implements OnInit {
       } );
     }
 
-    DeletarUsuario(id:number,nomeQuarto:string){
+    DeletarQuarto(id:number,nomeQuarto:string){
       let decisao = window.confirm("Você deseja realmente deletar o quarto " + nomeQuarto + " que contém o id " + id)
       if(decisao){
         this.roomService.DeleteById(id).subscribe(x =>{
           if(x.status == HttpStatusCode.NoContent){
-              window.confirm("Deletado com sucesso")
+            location.reload()
+            window.confirm("Deletado com sucesso")
           }else{
             window.confirm("Ocorreu um erro, tente novamente")
           }
         })
       }
 
+    }
+
+    DesativarOuAtivarQuarto(id:number){
+this.roomService.ActiveOrDesactiveRoom(id).subscribe(x =>{
+  window.confirm("A ação foi executada com sucesso")
+  location.reload()
+},(error)=>{
+  window.confirm("Ocorreu um erro, tento novamente")
+})
     }
 }

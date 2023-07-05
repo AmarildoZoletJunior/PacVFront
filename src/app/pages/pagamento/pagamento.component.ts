@@ -1,9 +1,9 @@
+import { DatePipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { format } from 'date-fns';
-import { AluguelQuartoRequest } from 'src/app/services/Interfaces/AluguelQuartoRequest';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { RoomResponse } from 'src/app/services/Interfaces/room-response';
 import { AluguelService } from 'src/app/services/Services/Aluguel/aluguel.service';
 import { CompartilharService } from 'src/app/services/Services/CompartilharInformacao/compartilhar.service';
@@ -19,19 +19,28 @@ export class PagamentoComponent implements OnInit {
   formulario!: FormGroup;
   informacaoService!: Array<any>;
   quarto!: RoomResponse;
+  data1!:any
+  data2!:any
 
-  getClientId = localStorage.getItem('idUser');
+  getClientId = this.cookieService.get('idUser');
 
   constructor(
     private aluguelService: AluguelService,
     private roomService: RoomService,
     private PaymentService: PagamentoService,
     private informacao: CompartilharService,
-    private rota: Router
+    private rota: Router,
+    private route: ActivatedRoute,
+    private cookieService: CookieService,
+    private datePipe: DatePipe
   ) {}
   ngOnInit(): void {
+    const options = 'dd/MM/yyyy';
     this.informacaoService = this.informacao.enviarInformacao();
-    this.roomService.GetRoomById(this.informacaoService[4]).subscribe(
+    this.data1 = this.datePipe.transform(this.informacaoService[0], options) || null;
+    this.data2 = this.datePipe.transform(this.informacaoService[1], options) || null;
+    this.informacaoService[1] = this.datePipe.transform(this.informacaoService[1], options);
+    this.roomService.GetRoomById(this.informacaoService[4] ).subscribe(
       (x) => {
         this.quarto = x;
       },
@@ -81,17 +90,17 @@ export class PagamentoComponent implements OnInit {
             window.confirm(
               'Parabéns, você efetuou seu pagamento e sua reserva foi criada com sucesso'
             );
+            this.rota.navigate(['/home'])
           },
           (error) => {
             if(error  instanceof HttpErrorResponse){
               if(error.status == 401){
-                localStorage.clear();
+                this.cookieService.deleteAll()
                 window.confirm(
-                  'Infelizmente, ocorreu um erro de validação do seu usuário e você esta sendo redirecionado para a página de login.'
+                  'Ocorreu um erro de validação do seu usuário e você esta sendo redirecionado para a página de login.'
                 );
                 this.rota.navigate(['/login']);
               }
-              //Fazer o tratamento de erro com o retorno da api
             }
           }
         );

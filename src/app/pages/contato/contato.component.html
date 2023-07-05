@@ -41,7 +41,7 @@
         <div class="col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-sm-12 text-center m-2">
           <h1>Está com dúvida?</h1>
           <p>Deixe neste formulário seu contato, entraremos em contato com você em breve.</p>
-          <form [formGroup]="formulario">
+          <form [formGroup]="formulario" (ngSubmit)="EnviarDados()">
           <div class="input-group mb-3">
             <input type="text" class="form-control mr-1" name="nome" id="nome" formControlName="nome" placeholder="Nome" aria-label="Nome">
             <input type="text" class="form-control ml-1" placeholder="Telefone" formControlName="telefone" name="telefone" aria-label="Telefone">

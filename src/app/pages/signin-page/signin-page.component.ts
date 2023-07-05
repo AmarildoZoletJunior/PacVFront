@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { ClientService } from 'src/app/services/Services/Client/client.service';
 
 
@@ -15,7 +16,7 @@ export class SigninPageComponent implements OnInit{
   formulario!: FormGroup;
 
   ngOnInit(): void {
-    let resultadoId = localStorage.getItem("idUser") || 0
+    let resultadoId = this.cookieService.get("idUser") || 0
     if(resultadoId != 0)
     {
       this.router.navigate(['/homepage'])
@@ -49,7 +50,7 @@ export class SigninPageComponent implements OnInit{
     return null
   }
 
-  constructor(private ClienteService: ClientService,private router:Router) { }
+  constructor(private ClienteService: ClientService,private router:Router,private cookieService: CookieService) { }
 
 
   enviarDados() {
@@ -63,7 +64,7 @@ export class SigninPageComponent implements OnInit{
         if (error instanceof HttpErrorResponse) {
           if(error.status == 401)
           {
-            localStorage.clear()
+            this.cookieService.deleteAll()
             window.confirm("Infelizmente, ocorreu um erro de validação do seu usuário e você esta sendo redirecionado para a página de login.")
             this.router.navigate(['/login'])
           }
