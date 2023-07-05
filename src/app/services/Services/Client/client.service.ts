@@ -29,7 +29,7 @@ public ModifyInfo(cliente:ClienteRequestInfo):Observable<HttpStatusCode>{
   return this.http.put<HttpStatusCode>(this.baseUrl,JSON.stringify(cliente),{ headers: this.getHeaders() }).pipe(resp => resp,error => error)
 }
 private getHeaders(): HttpHeaders {
-  const token = this.cookieService.get("keyToken"); // Substitua 'seu_token_aqui' pelo seu token Bearer real
+  const token = this.cookieService.get("keyToken");
 
   return new HttpHeaders({
     'Content-Type': 'application/json',

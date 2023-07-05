@@ -67,6 +67,7 @@ export class LoginAdminComponent {
   }
 
   enviarDados() {
+
     if (this.bloqueado) {
       this.mensagemBloqueado = true;
       return;
@@ -75,6 +76,7 @@ export class LoginAdminComponent {
       this.errorMessage = '';
       this.authService.AuthClient(this.formulario.value).subscribe(
         (x) => {
+          console.log(x)
           if(x.isAdmin == false){
             window.confirm("Usuário não autorizado")
             this.formulario.setValue({
@@ -85,8 +87,6 @@ export class LoginAdminComponent {
           }
           this.authService.estaLogado = true;
           this.cookieService.deleteAll();
-          this.cookieService.set('ClientName', String(x.clientName));
-          this.cookieService.set('idUser', String(x.clientId));
           this.cookieService.set('keyToken', x.token);
           this.router.navigate(['/administrador']);
         },

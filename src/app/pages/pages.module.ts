@@ -22,7 +22,6 @@ import { SobreComponent } from './sobre/sobre.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ListaReservasAdminComponent } from './lista-reservas-admin/lista-reservas-admin.component';
-import { ReservarSemPagamentoComponent } from './reservar-sem-pagamento/reservar-sem-pagamento.component';
 
 
 @NgModule({
@@ -44,8 +43,7 @@ import { ReservarSemPagamentoComponent } from './reservar-sem-pagamento/reservar
     HomePageComponent,
     SobreComponent,
     LoginAdminComponent,
-    ListaReservasAdminComponent,
-    ReservarSemPagamentoComponent
+    ListaReservasAdminComponent
   ],
   imports: [
     CommonModule,

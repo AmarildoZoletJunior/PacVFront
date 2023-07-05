@@ -22,7 +22,7 @@ export class AluguelService {
   baseUrl:string = "https://localhost:7253/BookingRoom/"
   constructor(private http:HttpClient,private cookieService:CookieService) { }
   public listDates(id:number): Observable<string[]>{
-    return this.http.get<string[]>(this.baseUrl + "room/" + id).pipe(resp => resp , error => error)
+    return this.http.get<string[]>(this.baseUrl + "room/" + id,{ headers: this.getHeaders() }).pipe(resp => resp , error => error)
   }
   public postBooking(room:AluguelQuartoRequest) : Observable<AluguelQuartoResponse>
   {

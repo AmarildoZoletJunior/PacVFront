@@ -36,7 +36,6 @@ export class LoginPageComponent implements OnInit {
   }
   
   constructor(private authService: AuthService,private router:Router,private cookieService: CookieService) { 
-    this.cookieService.deleteAll()
   }
 
   iniciarContagem() {
@@ -74,6 +73,8 @@ export class LoginPageComponent implements OnInit {
         this.cookieService.set("ClientName",String(x.clientName))
         this.cookieService.set("idUser", String(x.clientId))
         this.cookieService.set("keyToken", x.token)
+        console.log(x)
+        console.log("Executou")
         this.authService.estaLogado = true
         this.router.navigate(['/homepage'])
       }, (error) => {

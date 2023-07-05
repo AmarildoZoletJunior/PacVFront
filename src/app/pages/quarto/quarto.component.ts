@@ -70,7 +70,6 @@ export class QuartoComponent implements OnInit{
       dataAtual.setDate(dataAtual.getDate() + 9)
      if((new Date(data) >= new Date(this.startDate[0]) && new Date(data) <= new Date(this.startDate[1])) && dataAtual < new Date(this.startDate[0]) && dataAtual < new Date(this.startDate[1]))
      {
-      console.log("Caiu no true")
       setTimeout(() => {
         this.ErroData = false
         return

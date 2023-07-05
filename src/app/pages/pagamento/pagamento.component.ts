@@ -39,7 +39,6 @@ export class PagamentoComponent implements OnInit {
     this.informacaoService = this.informacao.enviarInformacao();
     this.data1 = this.datePipe.transform(this.informacaoService[0], options) || null;
     this.data2 = this.datePipe.transform(this.informacaoService[1], options) || null;
-    this.informacaoService[1] = this.datePipe.transform(this.informacaoService[1], options);
     this.roomService.GetRoomById(this.informacaoService[4] ).subscribe(
       (x) => {
         this.quarto = x;
