@@ -1,0 +1,30 @@
+<app-header></app-header>
+<div *ngIf="listaAluguel != null; else Carregando" class="d-flex text-center flex-row mx-auto col-10 flex-wrap">
+  <div *ngIf="listaAluguel.length == 0;else TemAluguel">
+    <div class="col-12 d-flex align-items-center text-center justify-content-center"></div>
+    <h1 class="col-12 text-center mx-auto">Não existe aluguel na sua conta</h1>
+  </div>
+  <ng-template #TemAluguel>
+    <div *ngFor="let aluguel of listaAluguel" class=" col-6 my-5">
+      <div class="col-12">
+        <div class="card p-5">
+          <div class="card-body">
+            <div class="d-flex flex-row align-items-center justify-content-around">
+              <div class="d-flex align-items-center">
+                <h3 class="fw-bold mb-1 mr-5">Datas: {{aluguel.start}} a {{aluguel.end}}</h3>
+                <button class="btn btn-primary p-2" routerLink="/reserva/{{aluguel.id}}">Visualizar Reserva</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  </div>
+  <ng-template #Carregando>
+    <div class="col-12 m-auto d-flex align-items-center justify-content-center h-100 w-100">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </ng-template>

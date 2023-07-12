@@ -74,7 +74,6 @@ export class CriarQuartoComponent implements OnInit {
             .CreateImageMainRoom(roomResponse.id, formData)
             .subscribe( //Postar imagem principal
               (x) => {
-                console.log(`Enviou a imagem principal.`);
                  for (let imagem of this.Imagens) {
                    const formData = new FormData();
                    formData.append('file', imagem);
@@ -82,6 +81,7 @@ export class CriarQuartoComponent implements OnInit {
                      .PostImagensRoom(roomResponse.id, formData) //Postar as diferentes imagens
                      .subscribe((x) => console.log('Ok imagem passou'));
                  }
+                 this.router.navigate(['/administrador'])
                  this.formulario.reset()
               },
               (error) => {

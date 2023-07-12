@@ -45,7 +45,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                  <button type="button" (click)="enviarParaPagamento()"
+                  <button type="button" (click)="confirmarReserva(room.id)"
                     [attr.data-bs-dismiss]="dataValida ? null : 'modal'" class="btn btn-primary">Confirmar
                     Aluguel</button>
                 </div>

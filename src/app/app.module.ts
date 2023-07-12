@@ -11,8 +11,8 @@ import { ComponentsModule } from './components/components.module';
 import {HttpClientModule} from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PagesModule } from './pages/pages.module';
 import { CookieService } from 'ngx-cookie-service';
+import { PagesModule } from './pages/pages.module';
 
 
 

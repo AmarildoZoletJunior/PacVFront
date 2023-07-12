@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { RoomResponse } from 'src/app/services/Interfaces/room-response';
 import { RoomService } from 'src/app/services/Services/Room/Servico/room.service';
 
@@ -14,11 +15,11 @@ export class EditarQuartoComponent implements OnInit {
   idRoute!: number;
   RoomData!: RoomResponse;
   RoomDataAntigo!: RoomResponse;
-  
+  ImagemMain!:File
   ImagemPrincipal: string = '';
   DemaisImagens: string = '';
 
-  constructor(private room: RoomService, private route: ActivatedRoute) {}
+  constructor(private room: RoomService, private route: ActivatedRoute,private cookieService:CookieService,private rotas:Router) {}
 
   ngOnInit(): void {
     this.idRoute = Number(this.route.snapshot.paramMap.get('id'));
@@ -46,6 +47,11 @@ export class EditarQuartoComponent implements OnInit {
     });
   }
 
+  selecionarImagemPrincipal(event: any) {
+    this.ImagemMain = event.target.files[0];
+    console.log('Usou o método de selecionar');
+    console.log(this.ImagemMain);
+  }
   ArquivoImagemPrincipalNome(event: any) {
     const file = event.target.files[0];
     this.ImagemPrincipal = file ? file.name : '';
@@ -60,11 +66,32 @@ export class EditarQuartoComponent implements OnInit {
       description: this.formulario.get('descricao')?.value,
       number: this.formulario.get('numero')?.value,
     };
-    console.log(this.ImagemPrincipal.length)
 
     if (roomDataResponse.description == this.RoomDataAntigo.description && roomDataResponse.level == this.RoomDataAntigo.level && roomDataResponse.name == this.RoomDataAntigo.name && roomDataResponse.number == this.RoomDataAntigo.number && this.ImagemPrincipal.length == 0) {
       return false;
     }
     return true;
+  }
+
+  EnviarModificacao(){
+    if(this.formulario.valid){
+      let room = {
+        "id":this.RoomData.id ,
+        "level": Number(this.formulario.get('andar')?.value),
+        "name": this.formulario.get('nome')?.value,
+        "description": this.formulario.get('descricao')?.value,
+        "number": this.formulario.get('numero')?.value
+      }
+      this.room.PutRoom(room).subscribe(x => {
+        if(this.ImagemPrincipal.length > 0){
+          const formData = new FormData();
+          formData.append('file', this.ImagemMain);
+          this.room.CreateImageMainRoom(this.RoomData.id ,formData).subscribe(x =>{
+          })
+        }
+        window.confirm("Quarto editado com sucesso.")
+        this.rotas.navigate(['/administrador'])
+      })
+    }
   }
 }

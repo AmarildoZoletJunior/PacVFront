@@ -25,6 +25,7 @@ export class ContatoComponent implements OnInit{
 
   EnviarDados(){
     window.confirm("Obrigado pelo contato, em breve te retornaremos.")
+    window.location.reload()
   }
 
   

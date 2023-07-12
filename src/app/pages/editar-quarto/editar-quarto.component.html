@@ -8,7 +8,7 @@
           <label for="image">Imagem principal:</label>
           <div class="custom-file">
             <input type="file" id="image" (change)="ArquivoImagemPrincipalNome($event)"
-              (change)="ModificarPropriedade()" class="custom-file-input">
+              (change)="ModificarPropriedade()" (change)="selecionarImagemPrincipal($event)" class="custom-file-input">
             <label class="custom-file-label fileImage" for="image">{{ ImagemPrincipal }}</label>
           </div>
         </div>
@@ -34,7 +34,7 @@
 
     <div class="d-flex col-6 mx-auto flex-row justify-content-between align-items-baseline">
       <button type="button" class="btn btn-danger h-25 m-0 btn-block my-5"  routerLink="/administrador">Voltar</button>
-      <button type="button" *ngIf="ModificarPropriedade() == true" class="btn btn-success h-25 m-0 btn-block"
+      <button type="button" (click)="EnviarModificacao()" *ngIf="ModificarPropriedade() == true" class="btn btn-success h-25 m-0 btn-block"
         [disabled]="!formulario.valid">Salvar
         alterações</button>
     </div>

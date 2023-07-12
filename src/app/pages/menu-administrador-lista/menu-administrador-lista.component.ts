@@ -2,6 +2,8 @@ import { HttpStatusCode } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { CookieService } from 'ngx-cookie-service';
+import { windowCount } from 'rxjs';
 import { RoomResponse } from 'src/app/services/Interfaces/room-response';
 import { RoomResponseWithImage } from 'src/app/services/Interfaces/room-with-images';
 import { AluguelService } from 'src/app/services/Services/Aluguel/aluguel.service';
@@ -26,11 +28,9 @@ export class MenuAdministradorListaComponent implements OnInit {
   datePickerConfig: Partial<BsDatepickerConfig>;
 
   constructor(
-    private compartilharInformacao: CompartilharService,
-    private navegacao: Router,
     private roomService: RoomService,
-    private route: ActivatedRoute,
-    private aluguel: AluguelService
+    private aluguel: AluguelService,
+    private cookieService:CookieService
   ) {
     this.Today.setDate(this.Today.getDate() + 1);
     this.datePickerConfig = Object.assign(
@@ -120,7 +120,7 @@ export class MenuAdministradorListaComponent implements OnInit {
     );
   }
 
-  enviarParaPagamento() {
+  confirmarReserva(id:number) {
     if(this.startDate == undefined){
       setTimeout(() => {
         this.ErroData = false
@@ -128,19 +128,15 @@ export class MenuAdministradorListaComponent implements OnInit {
       this.ErroData = true
       return
     }
-    
-    // let inicioData = new Date(this.startDate[0]);
-    // let finalData = new Date(this.startDate[1]);
-    // let diffInMs = finalData.getTime() - inicioData.getTime();
-    // let diffInDays = diffInMs / (1000 * 60 * 60 * 24) + 1;
-    // if (this.ErroData == false) {
-    //   this.compartilharInformacao.PegarInformacaoData(
-    //     inicioData,
-    //     finalData,
-    //     diffInDays,
-    //     Number(this.idRoute)
-    //   );
-    //   this.navegacao.navigate(['/pagamento']);
-    // }
+    let AluguelQuartoRequest = {
+      "start": this.startDate[0],
+      "end": this.startDate[1],
+      "roomId": id,
+      "clientId": Number(this.cookieService.get("idUser"))
+    }
+    this.aluguel.postBooking(AluguelQuartoRequest).subscribe(x => {
+      window.confirm("Aluguel feito com sucesso.")
+      this.startDate = undefined
+    })
   }
 }

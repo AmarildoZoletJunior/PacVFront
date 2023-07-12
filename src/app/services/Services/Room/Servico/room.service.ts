@@ -5,6 +5,7 @@ import { RoomResponse } from '../../../Interfaces/room-response';
 import { RoomResponseWithImage } from 'src/app/services/Interfaces/room-with-images';
 import { RoomRequest } from 'src/app/services/Interfaces/room-request';
 import { CookieService } from 'ngx-cookie-service';
+import { RoomPut } from 'src/app/services/Interfaces/RoomPut';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,16 @@ export class RoomService {
       'Authorization': 'Bearer ' + token
     });
   }
+
+  private getHeadersImage(): HttpHeaders {
+    const token = this.cookieService.get("keyToken"); // Substitua 'seu_token_aqui' pelo seu token Bearer real
+  
+    return new HttpHeaders({
+      'Authorization': 'Bearer ' + token
+    });
+  }
+
+
 
   public CreateRoom(room:RoomRequest) : Observable<RoomResponse>{
     return this.http.post<RoomResponse>(this.baseUrl, room,{ headers: this.getHeaders() }).pipe(resp => resp, error => error);
@@ -48,13 +59,16 @@ export class RoomService {
   }
 
   public CreateImageMainRoom(id:number,data:FormData): Observable<HttpResponse<HttpStatusCode>>{
-    return this.http.post<HttpResponse<HttpStatusCode>>(`${this.baseUrlImage}/ImageMain/${id}`,data,{ headers: this.getHeaders() }).pipe(resp => resp, error => error);
+    return this.http.post<HttpResponse<HttpStatusCode>>(`${this.baseUrlImage}/ImageMain/${id}`,data,{ headers: this.getHeadersImage() }).pipe(resp => resp, error => error);
   }
   public PostImagensRoom(id:number,data:FormData): Observable<HttpResponse<HttpStatusCode>>{
-    return this.http.post<HttpResponse<HttpStatusCode>>(`${this.baseUrlImage}/${id}`,data,{ headers: this.getHeaders() }).pipe(resp => resp, error => error);
+    return this.http.post<HttpResponse<HttpStatusCode>>(`${this.baseUrlImage}/${id}`,data,{ headers: this.getHeadersImage() }).pipe(resp => resp, error => error);
   }
 
   public ActiveOrDesactiveRoom(id:number): Observable<HttpResponse<HttpStatusCode>>{
     return this.http.get<HttpResponse<HttpStatusCode>>(`${this.baseUrl}/Available/${id}`,{ headers: this.getHeaders() }).pipe(resp => resp, error => error);
+  }
+  public PutRoom(RoomResponse:RoomPut): Observable<HttpResponse<HttpStatusCode>>{
+    return this.http.put<HttpResponse<HttpStatusCode>>(`${this.baseUrl}`,RoomResponse,{ headers: this.getHeaders() }).pipe(resp => resp, error => error);
   }
 }

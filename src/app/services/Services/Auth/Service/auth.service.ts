@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { authRequest } from '../../../Interfaces/authRequest';
 import {
   HttpClient,
@@ -73,6 +73,8 @@ export class AuthService implements CanActivate {
             return true;
           }
           this.estaLogado = false;
+          window.confirm("Infelizmente ocorreu um erro de validação do seu usuário e você esta sendo redirecionado para a página de login.")
+          this.router.navigate(['/login'])
           return false;
         }
         if(this.estaLogado == false){
@@ -82,6 +84,17 @@ export class AuthService implements CanActivate {
         return false
       }
       return true
+      }),catchError((error) => {
+        if (error.status === 401) {
+          window.confirm("Infelizmente ocorreu um erro de validação do seu usuário e você está sendo redirecionado para a página de login.");
+          this.router.navigate(['/login/administracao']);
+          return of(false);
+        } 
+        else {
+          window.confirm("Infelizmente ocorreu um erro de validação do seu usuário e você está sendo redirecionado para a página de login.");
+          this.router.navigate(['/login/administracao']);
+          return of(false);
+        }
       })
     );
   }

@@ -44,13 +44,9 @@ import { ListaReservasAdminComponent } from './lista-reservas-admin/lista-reserv
     HomePageComponent,
     SobreComponent,
     LoginAdminComponent,
-<<<<<<< HEAD
-    ListaReservasAdminComponent
-=======
-    TermoConsentimentoComponent
     ListaReservasAdminComponent,
-    ReservarSemPagamentoComponent
->>>>>>> 2fe13ff2753af8023d72a37b3ba4bb86eeb7045f
+    TermoConsentimentoComponent,
+    ListaReservasAdminComponent
   ],
   imports: [
     CommonModule,
@@ -66,9 +62,7 @@ import { ListaReservasAdminComponent } from './lista-reservas-admin/lista-reserv
     ContatoComponent,
     RecuperarSenhaComponent,
     LoginPageComponent,
-    TermoConsentimentoComponent
-  ]
-    LoginPageComponent
+    TermoConsentimentoComponent,
   ],
   providers: [CookieService,DatePipe]
 })
